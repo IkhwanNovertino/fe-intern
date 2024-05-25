@@ -39,6 +39,7 @@ export default function BenefitSection() {
               <ul>
                 {listBenefits.map((item, index) => (
                   <BenefitItem
+                    key={index}
                     index={index+1}
                     title={item.title}
                     description={item.desc}
