@@ -12,7 +12,7 @@ export default function Navbar() {
           </div>
           <div>
             <Link
-              href="/"
+              href="/sign-in"
               className="px-3 py-0.5 sm:py-4 text-base sm:text-lg font-medium  text-dark hover:text-light hover:tracking-wide hover:font-semibold hover:transition hover:duration-700 hover:ease-in"
             >
               Log in
