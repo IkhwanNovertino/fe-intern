@@ -1,5 +1,11 @@
+import LadingPageLayout from "@/layouts/landing-page";
+
 export default function Home() {
   return (
-    <div>Muhammad Ikhwan</div>
+    <LadingPageLayout>
+      <div className="min-h-screen">
+        
+      </div>
+    </LadingPageLayout>
   );
 }
