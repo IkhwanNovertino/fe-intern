@@ -1,3 +1,4 @@
+import BenefitSection from "@/components/organisms/benefit-section";
 import HeroSection from "@/components/organisms/hero-section";
 import LadingPageLayout from "@/layouts/landing-page";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <LadingPageLayout>
       <div className="min-h-screen">
         <HeroSection />
+        <BenefitSection />
       </div>
     </LadingPageLayout>
   );
