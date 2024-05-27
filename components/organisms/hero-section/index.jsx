@@ -42,8 +42,9 @@ export default function HeroSection() {
               <Image
                 src={HeroImage}
                 width={500}
-                height={500}
+                height="auto"
                 alt="header-image"
+                priority
               />
             </div>
           </div>

@@ -27,8 +27,9 @@ export default function BenefitSection() {
             <Image
               src={BenefitImage}
               width={850}
-              height={850}
+              height="auto"
               alt="content-image"
+              priority
             />
           </div>
           <div className="px-2 flex flex-col">
