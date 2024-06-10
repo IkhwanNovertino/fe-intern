@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 
 export default function Auth() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
   const router = useRouter();
 
@@ -29,8 +29,10 @@ export default function Auth() {
             aria-expanded="false"
             onClick={toggleDropdown}
           >
-            <img
-              className="w-12 object-cover object-center rounded-full p-0 m-0"
+            <Image
+              className="object-cover object-center rounded-full p-0 m-0"
+              width={56}
+              height={56}
               src="/img/profile-pic.png"
               alt="profile picture"
             />
