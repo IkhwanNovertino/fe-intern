@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import loginImage from "@/public/img/signin-image.png";
+import SignUpForm from '@/components/organisms/sign-up-form';
 
 export default function SignUpPage() {
   return (
@@ -32,91 +33,7 @@ export default function SignUpPage() {
                 </div>
               </header>
               <section className="mt-6 mb-10">
-                <form action="" method="post">
-                  <div className="mb-4">
-                    <label htmlFor="fullname" className="block text-base font-medium text-label">
-                      Nama Lengkap
-                      <div className="group/fullname flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
-                        <input
-                          type="text"
-                          name="fullname"
-                          id="fullname"
-                          placeholder="Nama Lengkap"
-                          className="w-full focus:outline-none text-base font-light bg-white/0"
-                          required
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="username" className="block text-base font-medium text-label">
-                      Username
-                      <div className="group/username flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
-                        <input
-                          type="text"
-                          name="username"
-                          id="username"
-                          placeholder="Username"
-                          className="w-full focus:outline-none text-base font-light bg-white/0"
-                          required
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="institute" className="block text-base font-medium text-label">
-                      Instansi/Sekolah/Perguruan Tinggi
-                      <div className="group/institute flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
-                        <input
-                          type="text"
-                          name="institute"
-                          id="institute"
-                          placeholder="Sekolah/Kampus"
-                          className="w-full focus:outline-none text-base font-light bg-white/0"
-                          required
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="password" className="block text-base font-medium text-label">
-                      Kata Kunci
-                      <div className="group/password  flex w-full px-5 py-4 mt-3 items-center text-base font-light rounded-xl border border-light focus-within:border-primary">
-                        <input
-                          type="password"
-                          name="password"
-                          id="password"
-                          placeholder="Kata kunci"
-                          className="w-full focus:outline-none text-base font-light bg-white/0"
-                          required
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="mb-2">
-                    <label htmlFor="confirmPassword" className="block text-base font-medium text-label">
-                      Konfirmasi Kata Kunci
-                      <div className="group/confirmPassword  flex w-full px-5 py-4 mt-3 items-center text-base font-light rounded-xl border border-light focus-within:border-primary">
-                        <input
-                          type="password"
-                          name="confirmPassword"
-                          id="confirmPassword"
-                          placeholder="Tulis Ulang Kata kunci"
-                          className="w-full focus:outline-none text-base font-light bg-white/0"
-                          required
-                        />
-                      </div>
-                    </label>
-                  </div>
-                  <div className="footer-form">
-                    <button
-                      type="submit"
-                      className="block w-full px-4 py-3 mt-9 font-medium text-xl text-white bg-primary rounded-xl focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"
-                    >
-                      Buat Akun
-                    </button>
-                  </div>
-                </form>
+                <SignUpForm/>
               </section>
             </article>
           </div>
