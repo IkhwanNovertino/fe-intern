@@ -21,8 +21,10 @@ export default function SubmissionSection() {
                     type="text"
                     name="name"
                     id="name"
+                    placeholder='Login terlebih dahulu'
                     className="w-full focus:outline-none text-base font-normal bg-primary/0 px-5 py-2 md:py-3 mt-2 rounded-xl border border-gray-300 focus-within:border-primary"
                     required
+                    disabled
                   />
                 </label>
               </div>

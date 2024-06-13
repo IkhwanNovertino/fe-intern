@@ -1,39 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LadingPageLayout from '@/layouts/landing-page';
 import CardVacancy from '@/components/molecules/card-vacancy';
+import axios from 'axios';
+import { format } from 'date-fns';
 
 export default function VacancyPage() {
-  const dataVacancies = [
-    {
-      'id': 'vacant1',
-      'position': 'desain grafis',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    {
-      'id': 'vacant2',
-      'position': 'programmer',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    { 
-      'id': 'vacant3',
-      'position': 'statistik',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    { 
-      'id': 'vacant4',
-      'position': 'videografer',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-  ]
+  const [vacancy, setVacancy] = useState([]);
+
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+
+  useEffect(() => {
+    axios.get(`${ROOT_API}/${API_VERSION}/vacancy`)
+      .then(res => {
+        const data = res.data.data.vacancy;
+        // console.log(data);
+        setVacancy(data);
+      })
+  }, [])
+
+  // const dataVacancies = [
+  //   {
+  //     'id': 'vacant1',
+  //     'position': 'desain grafis',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   {
+  //     'id': 'vacant2',
+  //     'position': 'programmer',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   { 
+  //     'id': 'vacant3',
+  //     'position': 'statistik',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   { 
+  //     'id': 'vacant4',
+  //     'position': 'videografer',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  // ]
 
   return (
     <LadingPageLayout>
@@ -59,14 +75,14 @@ export default function VacancyPage() {
                       + Daftar Magang
                     </Link>
                   </button>
-                  {dataVacancies.map(item => (
+                  {vacancy.map(item => (
                     <CardVacancy
-                      key={item.id}
-                      id={item.id}
+                      key={item._id}
+                      id={item._id}
                       position={item.position}
-                      create_date={`${item.create_date.getDate()} ${item.create_date.getMonth()} ${item.create_date.getFullYear()}`}
+                      create_date={format(item.createdAt, 'dd MMMM yyyy')}
                       duration={item.duration}
-                      start_internship={`${item.start_internship.getDate()} ${item.start_internship.getMonth()} ${item.start_internship.getFullYear()}`}
+                      start_internship={format(item.start_an_intern, 'dd MMMM yyyy')}
                     />
                     ))}
                 </div>
