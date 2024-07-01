@@ -3,15 +3,27 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { deleteCookie, getCookie } from 'cookies-next';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
+  const [avatar, setAvatar] = useState('');
   const router = useRouter();
 
   useEffect(() => {
     const token = getCookie('token');
-    if (token) setIsLogin(true);
+    if (token) {
+      const jwtToken = atob(token);
+      const payload = jwtDecode(jwtToken);
+      console.log(payload);
+      const dataUserFromPayload = payload.user;
+
+      const avatarUser = `https://magang-beta.onrender.com/uploads/${dataUserFromPayload.avatar}`;
+      console.log(avatarUser);
+      setAvatar(avatarUser);
+      setIsLogin(true);
+    }
   }, []);
 
   const toggleDropdown = () => isOpenDropdown ? setIsOpenDropdown(false) : setIsOpenDropdown(true);
@@ -37,10 +49,10 @@ export default function Auth() {
             onClick={toggleDropdown}
           >
             <Image
-              className="object-cover object-center rounded-full p-0 m-0"
+              className="object-center rounded-full p-0 m-0"
               width={56}
               height={56}
-              src="/img/profile-pic.png"
+              src={avatar === 'https://magang-beta.onrender.com/uploads/none' ? "/img/human-resource.png" : avatar}
               alt="profile picture"
             />
           </button>

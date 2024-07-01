@@ -2,30 +2,43 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 export default function SignUpForm() {
   const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [institute, setInstitute] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const router = useRouter();
 
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+
   const onSubmit = () => {
-    router.push('/sign-up-complete')
+    axios.post(`https://magang-beta.onrender.com/api/v1/auth/signup`, {
+      name, email, institute, password 
+    }).then(res => {
+      console.log(res);
+      router.push('/sign-up-complete')
+    }).catch(err => {
+      const errorResponse = err.response.data.message;
+      errorResponse.forEach(el => {
+        toast.error(el);
+      });
+    })
   }
 
   return (
     <form>
       <div className="mb-4">
-        <label htmlFor="fullname" className="block text-base font-medium text-label">
+        <label htmlFor="name" className="block text-base font-medium text-label">
           Nama Lengkap
-          <div className="group/fullname flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
+          <div className="group/name flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
             <input
               type="text"
-              name="fullname"
-              id="fullname"
+              name="name"
+              id="name"
               placeholder="Nama Lengkap"
               className="w-full focus:outline-none text-base font-light bg-white/0"
               value={name}
@@ -35,17 +48,17 @@ export default function SignUpForm() {
         </label>
       </div>
       <div className="mb-4">
-        <label htmlFor="username" className="block text-base font-medium text-label">
-          Username
-          <div className="group/username flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
+        <label htmlFor="email" className="block text-base font-medium text-label">
+          Email
+          <div className="group/email flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
             <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
               className="w-full focus:outline-none text-base font-light bg-white/0"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
         </label>
@@ -78,22 +91,6 @@ export default function SignUpForm() {
               className="w-full focus:outline-none text-base font-light bg-white/0"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-            />
-          </div>
-        </label>
-      </div>
-      <div className="mb-2">
-        <label htmlFor="confirmPassword" className="block text-base font-medium text-label">
-          Konfirmasi Kata Kunci
-          <div className="group/confirmPassword  flex w-full px-5 py-4 mt-3 items-center text-base font-light rounded-xl border border-light focus-within:border-primary">
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Tulis Ulang Kata kunci"
-              className="w-full focus:outline-none text-base font-light bg-white/0"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
             />
           </div>
         </label>

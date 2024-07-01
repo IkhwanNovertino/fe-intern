@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { setCookie } from 'cookies-next';
+import axios from 'axios';
 
 export default function SignInForm() {
   const [username, setUsername] = useState('');
@@ -10,30 +11,32 @@ export default function SignInForm() {
 
   const router = useRouter()
 
-  const dataUser = [
-    {
-      'username': "pemohon",
-      'password': "pemohon123"
-    }
-  ]
-
-  const onSubmit = async () => {
-    const data = { username, password };
-
-    if (!username || !password) {
-      toast.error("username dan password wajib diisi !")
-    } else {
-      toast.success('Login Success');
-      setCookie('token', 'login success');
-      router.push('/')
-    }
+  const onSubmit = () => {
+    
+    if (!username || !password) return toast.error('username dan password wajib diisi');
+    
+    axios.post(`https://magang-beta.onrender.com/api/v1/auth/signin`, {
+      username, password
+    }).then(res => {
+      const token = res.data?.data?.token;
+      const tokenBase64 = btoa(token);
+      setCookie('token', tokenBase64, {maxAge: 24*60*60});
+      router.push('/');
+    }).catch(error => {
+      const errMessage = error.response?.data?.message;
+      if (errMessage) {
+        errMessage.forEach(element => {
+          toast.error(element);
+        });
+      }
+    })
   }
 
   return (
     <form>
       <div className="mb-4">
         <label htmlFor="username" className="block text-base font-medium text-label">
-          Username
+          Username/Email
           <div className="group/username flex w-full px-5 py-4 mt-3 text-base font-light rounded-xl border border-light focus-within:border-primary">
             <svg
               className="mr-4 fill-light/20 group-focus-within/username:fill-primary"
@@ -53,7 +56,7 @@ export default function SignInForm() {
               type="text"
               name="username"
               id="username"
-              placeholder="Username"
+              placeholder="Username atau Email"
               className="w-full focus:outline-none text-base font-light bg-white/0"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
