@@ -8,6 +8,8 @@ import axios from 'axios';
 export default function SignInForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const router = useRouter()
 
@@ -15,7 +17,7 @@ export default function SignInForm() {
     
     if (!username || !password) return toast.error('username dan password wajib diisi');
     
-    axios.post(`https://magang-beta.onrender.com/api/v1/auth/signin`, {
+    axios.post(`${ROOT_API}/${ API_VERSION}/auth/signin`, {
       username, password
     }).then(res => {
       const token = res.data?.data?.token;

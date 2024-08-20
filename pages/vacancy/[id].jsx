@@ -17,7 +17,7 @@ export default function VacancyDetailPage() {
                 <VacancyDescription id={id} />
               </div>
               <div className="lg:w-1/2 py-2 px-2 lg:pt-28 lg:px-6">
-                <SubmissionSection />
+                <SubmissionSection id={id} />
               </div>
             </div>
           </div>
