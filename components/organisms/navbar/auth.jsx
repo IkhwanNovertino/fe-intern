@@ -60,7 +60,7 @@ export default function Auth() {
             <div className="dropdown-menu absolute z-20 w-max -ml-36 mt-4 py-2 px-4 rounded-lg shadow-md backdrop-blur-sm">
               <ul>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
-                  <Link href="/">Pengajuan Magang</Link>
+                  <Link href="/applicant">Pengajuan Magang</Link>
                 </li>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
                   <Link href="/">Profil Saya</Link>
