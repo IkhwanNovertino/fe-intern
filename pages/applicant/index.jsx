@@ -29,36 +29,36 @@ export default function ApplicantOverview() {
     })
   }, [])
 
-  const dataVacancies = [
-    {
-      'id': 'vacant1',
-      'position': 'desain grafis',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    {
-      'id': 'vacant2',
-      'position': 'programmer',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    { 
-      'id': 'vacant3',
-      'position': 'statistik',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-    { 
-      'id': 'vacant4',
-      'position': 'videografer',
-      'create_date': new Date(1709424000),
-      'duration': '2 bulan',
-      'start_internship': new Date(1717372800)
-    },
-  ]
+  // const dataVacancies = [
+  //   {
+  //     'id': 'vacant1',
+  //     'position': 'desain grafis',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   {
+  //     'id': 'vacant2',
+  //     'position': 'programmer',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   { 
+  //     'id': 'vacant3',
+  //     'position': 'statistik',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  //   { 
+  //     'id': 'vacant4',
+  //     'position': 'videografer',
+  //     'create_date': new Date(1709424000),
+  //     'duration': '2 bulan',
+  //     'start_internship': new Date(1717372800)
+  //   },
+  // ]
   return (
     <LadingPageLayout>
       <div className="min-h-screen">
@@ -72,23 +72,23 @@ export default function ApplicantOverview() {
                 </header>
               </div>
               <div className="w-fit mb-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  
-                  {submission.map((item, index) => (
-                    <CardSubmission
-                      key={index}
-                      id={item.id}
-                      createdAt={format(item.createdAt, 'dd MMMM yyyy')}
-                      start_an_internship={format(item.start_an_internship, 'dd MMMM yyyy') }
-                      end_an_internship={format(item.end_an_internship, 'dd MMMM yyyy')}
-                      status={item.status}
-                      candidates={item.candidates.length}
-                    />
+                {submission.length === 0 || submission === null ? (
+                <h2 className="text-dark text-lg font-semibold">Belum melakukan pengajuan</h2>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {submission.map((item, index) => (
+                      <CardSubmission
+                        key={index}
+                        id={item._id}
+                        createdAt={format(item.createdAt, 'dd MMMM yyyy')}
+                        start_an_internship={format(item.start_an_internship, 'dd MMMM yyyy') }
+                        end_an_internship={format(item.end_an_internship, 'dd MMMM yyyy')}
+                        status={item.status}
+                        candidates={item.candidates.length}
+                      />
                     ))}
-                </div>
-                <div className="flex justify-center md:justify-start">
-                  
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

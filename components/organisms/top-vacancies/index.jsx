@@ -16,7 +16,6 @@ export default function TopVacancies() {
         const data = res.data.data.vacancy;
         setDataVacant(data);
         console.log(dataVacant);
-        
       })
   },[])
 

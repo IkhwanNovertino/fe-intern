@@ -36,7 +36,7 @@ export default function CardSubmission({id, createdAt, start_an_internship, end_
           className=" me-3 text-base font-semibold text-primary hover:brightness-50"
         >
           <Link
-            href={`/vacancy`}
+            href={`/applicant/${id}`}
           >
             Detail Pengajuan
           </Link>

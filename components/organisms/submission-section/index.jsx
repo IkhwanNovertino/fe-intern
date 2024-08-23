@@ -1,7 +1,6 @@
 import { getCookie } from 'cookies-next';
 import { jwtDecode } from 'jwt-decode';
-import React, { useEffect, useState } from 'react'
-import CandidateFieldset from './candidate-fieldset';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
