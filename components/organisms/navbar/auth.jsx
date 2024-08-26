@@ -8,7 +8,12 @@ import { jwtDecode } from 'jwt-decode';
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpenDropdown, setIsOpenDropdown] = useState(false)
-  const [avatar, setAvatar] = useState('');
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    role: '',
+    avatar: '',
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -16,12 +21,12 @@ export default function Auth() {
     if (token) {
       const jwtToken = atob(token);
       const payload = jwtDecode(jwtToken);
-      console.log(payload);
       const dataUserFromPayload = payload.user;
+      console.log(dataUserFromPayload);
+      
 
-      const avatarUser = `https://magang-beta.onrender.com/uploads/${dataUserFromPayload.avatar}`;
-      console.log(avatarUser);
-      setAvatar(avatarUser);
+      dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
+      setUser(dataUserFromPayload)
       setIsLogin(true);
     }
   }, []);
@@ -52,15 +57,24 @@ export default function Auth() {
               className="object-center rounded-full p-0 m-0"
               width={56}
               height={56}
-              src={avatar === 'https://magang-beta.onrender.com/uploads/none' ? "/img/human-resource.png" : avatar}
+              src={user.avatar === 'https://be-magang-production.up.railway.app/public/uploads/none' ? "/img/human-resource.png" : avatar}
               alt="profile picture"
             />
           </button>
           {isOpenDropdown && (
-            <div className="dropdown-menu absolute z-20 w-max -ml-36 mt-4 py-2 px-4 rounded-lg shadow-md backdrop-blur-sm">
+            <div className="dropdown-menu absolute z-20 w-max -ml-28 mt-4 py-2 px-4 rounded-lg shadow-md backdrop-blur-sm">
               <ul>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
-                  <Link href="/applicant">Pengajuan Magang</Link>
+                  {user.role === 'applicant' ? (
+                    <Link href="/applicant">
+                      Daftar Pengajuan
+                    </Link>
+                  ) : (
+                    <Link href={`/${user.role}`}>
+                      Dashboard
+                    </Link>
+                  )}
+                  
                 </li>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
                   <Link href="/">Profil Saya</Link>

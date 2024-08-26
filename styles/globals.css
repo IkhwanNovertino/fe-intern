@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sidebar {
+  position: relative;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.main-wrapper::-webkit-scrollbar {
+  display: none;
+}

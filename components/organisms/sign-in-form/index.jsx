@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { setCookie } from 'cookies-next';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 export default function SignInForm() {
   const [username, setUsername] = useState('');
@@ -22,8 +23,17 @@ export default function SignInForm() {
     }).then(res => {
       const token = res.data?.data?.token;
       const tokenBase64 = btoa(token);
-      setCookie('token', tokenBase64, {maxAge: 24*60*60});
-      router.push('/');
+      setCookie('token', tokenBase64, { maxAge: 24 * 60 * 60 });
+
+      const payload = jwtDecode(token);
+      const dataRoleUserFromPayload = payload.user.role;
+      if (dataRoleUserFromPayload === 'applicant') {
+        router.push('/');
+      } else if (dataRoleUserFromPayload === 'umpeg') {
+        router.push('/umpeg')
+      } else {
+        
+      }
     }).catch(error => {
       const errMessage = error.response?.data?.message;
       if (errMessage) {
