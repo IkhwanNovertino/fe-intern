@@ -67,7 +67,7 @@ export default function SubmissionSection({ id }) {
         }
       }).then(res => {
       console.log(res);
-      router.push('/');
+      router.push('/submission-complete');
     }).catch(err => {
       console.log(err);
     })
@@ -188,7 +188,7 @@ export default function SubmissionSection({ id }) {
                       onChange={(event) => setDocFile(event.target.files[0])}
                       name="offering_letter"
                       id="offering_letter"
-                      className="w-full text-sm md:text-base text-light file:py-2 file:px-4 file:border-0 file:rounded-full file:bg-light/40 file:text-black file:font-medium hover:file:bg-primary/50 disabled:file:bg-light/40"
+                      className="w-full text-sm md:text-base text-light file:py-2 file:px-4 file:border-0 file:rounded-full file:bg-light/40 file:text-black file:font-medium hover:file:bg-primary/50 disabled:file:bg-light/40 disabled:cursor-not-allowed"
                       disabled={user.role === 'applicant' ? false : true}
                       required
                     />

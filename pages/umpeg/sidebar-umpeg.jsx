@@ -31,7 +31,7 @@ export default function SidebarUmpeg() {
           href={"/umpeg/submission"}
           title={'Pengajuan'}
           icon={'ic-submission'}
-          active={pathname === '/umpeg/submission' ? true : false}
+          active={pathname.includes('/submission') ? true : false}
         />
         <MenuItem
           href={"/umpeg/employee"}

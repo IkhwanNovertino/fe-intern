@@ -59,7 +59,7 @@ export default function SubmissionDetailPage() {
             <div className="relative flex flex-col justify-center items-center">
               <div className="py-4 px-2 mb-4 text-center">
                 <header>
-                <h4 className="text-primary text-base sm:text-xl font-semibold">Detail</h4>
+                  <h4 className="text-primary text-base sm:text-xl font-semibold">Detail</h4>
                   <h2 className="text-dark text-xl sm:text-4xl font-semibold">Pengajuan Magang</h2>
                 </header>
               </div>
@@ -67,7 +67,7 @@ export default function SubmissionDetailPage() {
                 <div className="min-h-screen py-4 px-1 md:pt-8 md:px-4">
                   <header className="min-w-fit md:min-w-96 md:flex md:justify-between">
                     <div className='w-fit'>
-                      <Badge title={submission.status} status={submission.status} />
+                      <Badge title={submission.status} status={submission.status} size={'normal'}/>
                     </div>
                     <div className="text-dark font-medium text-sm px-1 mt-2 mb-2">{format(new Date(submission.createdAt), 'dd MMMM yyyy')}</div>
                   </header>

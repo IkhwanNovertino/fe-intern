@@ -9,7 +9,6 @@ import { getCookie } from 'cookies-next';
 export default function ApplicantOverview() {
   const [submission, setSubmission] = useState([]);
 
-
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
@@ -21,44 +20,14 @@ export default function ApplicantOverview() {
         Authorization: `Bearer ${jwtToken}`
       }
     }).then(res => {
-      console.log(res.data?.data.submission);
-      const data = res.data.data.submission;
+      console.log(res.data?.data?.payload);
+      const data = res.data.data.payload;
       setSubmission(data);
     }).catch(err => {
       console.log(err.response);
     })
   }, [])
 
-  // const dataVacancies = [
-  //   {
-  //     'id': 'vacant1',
-  //     'position': 'desain grafis',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   {
-  //     'id': 'vacant2',
-  //     'position': 'programmer',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   { 
-  //     'id': 'vacant3',
-  //     'position': 'statistik',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   { 
-  //     'id': 'vacant4',
-  //     'position': 'videografer',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  // ]
   return (
     <LadingPageLayout>
       <div className="min-h-screen">
@@ -79,7 +48,7 @@ export default function ApplicantOverview() {
                     {submission.map((item, index) => (
                       <CardSubmission
                         key={index}
-                        id={item._id}
+                        id={item.id}
                         createdAt={format(item.createdAt, 'dd MMMM yyyy')}
                         start_an_internship={format(item.start_an_internship, 'dd MMMM yyyy') }
                         end_an_internship={format(item.end_an_internship, 'dd MMMM yyyy')}

@@ -27,7 +27,7 @@ export default function CardSubmission({id, createdAt, start_an_internship, end_
       <div className="text-left ps-1 mb-4">
         <h6 className="text-light text-sm/tight font-light">Status magang</h6>
         <h4 className=" w-fit mt-px">
-          <Badge title={status} status={status}/>
+          <Badge title={status} status={status} size={'normal'}/>
         </h4>
       </div>
       <div className="text-right">
