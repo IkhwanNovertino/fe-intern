@@ -25,7 +25,7 @@ export default function SubmissionComplete() {
           type="button"
           className="block my-8 px-6 py-3 bg-primary rounded-xl text-base font-semibold text-white mx-auto"
         >
-          <Link href="/">Lihat Status Pengajuan</Link>
+          <Link href="/applicant">Lihat Status Pengajuan</Link>
         </button>
       </div>
 
