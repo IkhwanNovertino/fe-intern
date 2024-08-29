@@ -57,8 +57,8 @@ export default function SubmissionUmpeg() {
                 </thead>
                 <tbody>
                   {submission.map(el => (
-                    <tr key={el.id}>
-                      <TableData title={format(new Date(el.createdAt), 'dd MMMM yyyy')} />
+                    <tr key={el.id} className="mb-2">
+                      <TableData classname={"font-semibold"} title={format(new Date(el.createdAt), 'dd MMMM yyyy')} />
                       <TableData classname={"uppercase"} title={el.doc_institute} />
                       <TableData title={`${el.candidates.length} Peserta`} />
                       <TableData title={el.type_of_submission} />
@@ -66,12 +66,12 @@ export default function SubmissionUmpeg() {
                         <Badge status={el.status} title={el.status === 'confirmed' ? 'waiting' : el.status } size={'small'}/>
                       </TableData>
                       <TableData>
-                      <Link
-                        href={`/umpeg/submission/${el.id}`}
-                        className="text-xs font-medium text-black text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                      >
-                        Detail
-                      </Link>
+                        <Link
+                          href={`/umpeg/submission/${el.id}`}
+                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
+                        >
+                          Detail
+                        </Link>
                       </TableData>
                     </tr>
                   ))}
