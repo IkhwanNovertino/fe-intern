@@ -16,12 +16,6 @@ export default function SignUpSuccess() {
       </div>
       <div>
         <h2 className="text-2xl font-semibold text-dark text-center">Akun Telah dibuat</h2>
-        <p className="text-sm font-light lg:font-normal text-center text-light my-2">
-          Username
-          <span className="font-medium"> ikhwan123FRT</span>
-          <br />
-          telah berhasil dibuat.
-        </p>
         <button
           type="button"
           className="block my-8 px-6 py-3 bg-primary rounded-xl text-base font-semibold text-white mx-auto"
