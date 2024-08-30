@@ -8,6 +8,8 @@ import Badge from '@/components/atoms/badge'
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
 import { format } from 'date-fns'
+import TableSubmission from '@/components/molecules/table-submission'
+import TempalateDashboardUmpeg from '../template'
 
 export default function SubmissionUmpeg() {
   const [submission, setSubmission] = useState([]);
@@ -35,53 +37,17 @@ export default function SubmissionUmpeg() {
   }, [])
   
   return (
-    <section className="flex xl:max-w-5xl xl:justify-center xl:mx-auto">
-      <SidebarUmpeg/>
-      <main className="main-wrapper relative w-full overflow-y-auto">
-        <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
-          <header className="overview-title">
-            <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Data Magang Diskominfo Banjarbaru</h1>
-          </header>
-          <section className="overview-list-submission">
-            <div className="mt-6 w-full lg:max-w-3xl">
-              <Table>
-                <thead>
-                  <tr>
-                    <TableHead title={'tanggal pengajuan'}/>
-                    <TableHead title={'instansi pengaju'}/>
-                    <TableHead title={'jumlah peserta'}/>
-                    <TableHead title={'tipe pengajuan'}/>
-                    <TableHead title={'status'}/>
-                    <TableHead title={'aksi'}/>
-                  </tr>
-                </thead>
-                <tbody>
-                  {submission.map(el => (
-                    <tr key={el.id} className="mb-2">
-                      <TableData classname={"font-semibold"} title={format(new Date(el.createdAt), 'dd MMMM yyyy')} />
-                      <TableData classname={"uppercase"} title={el.doc_institute} />
-                      <TableData title={`${el.candidates.length} Peserta`} />
-                      <TableData title={el.type_of_submission} />
-                      <TableData>
-                        <Badge status={el.status} title={el.status === 'confirmed' ? 'waiting' : el.status } size={'small'}/>
-                      </TableData>
-                      <TableData>
-                        <Link
-                          href={`/umpeg/submission/${el.id}`}
-                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                        >
-                          Detail
-                        </Link>
-                      </TableData>
-                    </tr>
-                  ))}
-                  
-                </tbody>
-              </Table>
-            </div>
-          </section>
+    <TempalateDashboardUmpeg>
+      <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
+        <header className="overview-title">
+          <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Data Magang Diskominfo Banjarbaru</h1>
+        </header>
+        <section className="overview-list-submission">
+          <div className="mt-6 w-full lg:max-w-3xl">
+            <TableSubmission />
+          </div>
         </section>
-      </main>
-    </section>
+      </section>
+    </TempalateDashboardUmpeg>
   )
 }
