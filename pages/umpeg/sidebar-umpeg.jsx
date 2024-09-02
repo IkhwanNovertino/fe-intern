@@ -43,19 +43,19 @@ export default function SidebarUmpeg() {
           href={"/umpeg/intern"}
           title={'Peserta'}
           icon={'ic-intern'}
-          active={pathname === '/umpeg/intern' ? true : false}
+          active={pathname.includes('/intern') ? true : false}
         />
         <MenuItem
           href={"/umpeg/recap"}
           title={'Rekap Magang'}
           icon={'ic-recap'}
-          active={pathname === '/umpeg/intern' ? true : false}
+          active={pathname.includes('/recap') ? true : false}
         />
         <MenuItem
           logout={logout}
           title={'Logout'}
           icon={'ic-logout'}
-          active={pathname === '/umpeg/intern' ? true : false}
+          active={pathname.includes('/logout') ? true : false}
         />
       </Menus>
     </Sidebar>
