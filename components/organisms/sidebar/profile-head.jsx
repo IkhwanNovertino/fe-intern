@@ -14,8 +14,8 @@ export default function ProfileHead({name, role, avatar}) {
         />
       </div>
       <div className="name-role-profile text-center mt-2">
-        <h1 className="text-dark font-semibold text-base/none py-1">Seneca</h1>
-        <h6 className="text-light font-light text-xs/none">Pegawai Umpeg</h6>
+        <h1 className="text-dark font-semibold text-base/none py-1">{name}</h1>
+          <h6 className="text-light font-light text-xs/none">{role}</h6>
       </div>
     </header>
       

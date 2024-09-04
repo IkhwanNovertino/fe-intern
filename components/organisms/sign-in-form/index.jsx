@@ -31,8 +31,10 @@ export default function SignInForm() {
         router.push('/');
       } else if (dataRoleUserFromPayload === 'umpeg') {
         router.push('/umpeg')
+      } else if (dataRoleUserFromPayload === 'intern') {
+        router.push('/intern')
       } else {
-        
+        router.push('/');
       }
     }).catch(error => {
       const errMessage = error.response?.data?.message;
