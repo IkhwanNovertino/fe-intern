@@ -57,35 +57,6 @@ export default function Umpeg() {
           <h1 className="text-dark text-2xl font-semibold text-left mt-24">Daftar pengajuan magang terbaru</h1>
           <div className="mt-2 w-full lg:max-w-4xl">
             <TableSubmission />
-            {/* <Table>
-              <thead>
-                <tr>
-                  <TableHead title={'tanggal pengajuan'}/>
-                  <TableHead title={'instansi pengaju'}/>
-                  <TableHead title={'jumlah peserta'}/>
-                  <TableHead title={'status'}/>
-                  <TableHead title={'aksi'}/>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <TableData title={"28 Juli 2024"} />
-                  <TableData classname={"uppercase"} title={"STMIK BANJARBARU"} />
-                  <TableData title={"2 Peserta"} />
-                  <TableData>
-                    <Badge status={'pending'} title={'pending'} size={'small'}/>
-                  </TableData>
-                  <TableData>
-                    <Link
-                      href="/umpeg/submission/1"
-                      className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                    >
-                      Detail
-                    </Link>
-                  </TableData>
-                </tr>
-              </tbody>
-            </Table> */}
           </div>
         </section>
       </section>

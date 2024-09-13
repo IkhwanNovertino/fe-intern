@@ -23,9 +23,8 @@ export default function Auth() {
       const payload = jwtDecode(jwtToken);
       const dataUserFromPayload = payload.user;
       console.log(dataUserFromPayload);
-      
 
-      dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
+      dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/uploads/${dataUserFromPayload.avatar}`
       setUser(dataUserFromPayload)
       setIsLogin(true);
     }
@@ -57,7 +56,7 @@ export default function Auth() {
               className="object-center rounded-full p-0 m-0"
               width={56}
               height={56}
-              src={user.avatar === 'https://be-magang-production.up.railway.app/public/uploads/none' ? "/img/human-resource.png" : avatar}
+              src={user.avatar === 'https://be-magang-production.up.railway.app/public/uploads/none' ? "/img/human-resource.png" : user.avatar}
               alt="profile picture"
             />
           </button>

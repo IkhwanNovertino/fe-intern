@@ -6,7 +6,7 @@ import MenuItem from '../sidebar/menu-item'
 import { usePathname, useRouter } from 'next/navigation'
 import { deleteCookie } from 'cookies-next'
 
-export default function SidebarIntern() {
+export default function SidebarSupervisor() {
   const pathname = usePathname();
   const router = useRouter();
   const logout = () => {
@@ -16,25 +16,31 @@ export default function SidebarIntern() {
   return (
     <Sidebar>
       <ProfileHead
-        name={'Seneca'}
-        role={'Peserta Magang'}
+        name={'Seneca, M.Kom'}
+        role={'Pembimbing'}
         avatar={''}
       />
       <Menus>
         <MenuItem
-          href={"/intern"}
+          href={"/supervisor"}
           title={'Dashboard'}
           icon={'ic-dashboard'}
-          active={pathname === '/intern' ? true : false}
+          active={pathname === '/supervisor' ? true : false}
         />
         <MenuItem
-          href={"/intern/logbook"}
-          title={'Logbook'}
+          href={"/supervisor/intern"}
+          title={'Peserta Magang'}
+          icon={'ic-intern'}
+          active={pathname.includes('/intern') ? true : false}
+        />
+        <MenuItem
+          href={"/supervisor/logbook"}
+          title={'logbook'}
           icon={'ic-logbook'}
           active={pathname.includes('/logbook') ? true : false}
         />
         <MenuItem
-          href={"/intern/certificate"}
+          href={"/supervisor/certificate"}
           title={'Sertifikat'}
           icon={'ic-certificate'}
           active={pathname.includes('/certificate') ? true : false}
