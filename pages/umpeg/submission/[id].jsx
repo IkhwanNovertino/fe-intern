@@ -97,7 +97,7 @@ export default function SubmissionDetailUmpeg() {
         Authorization: `Bearer ${jwtToken}`
       }
     }).then(res => {
-      const data = res.data.data.submission;
+      const data = res.data.data;
       console.log(`DATA >>>>>`);
       console.log(data);
       

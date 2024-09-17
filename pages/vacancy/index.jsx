@@ -14,7 +14,7 @@ export default function VacancyPage() {
   useEffect(() => {
     axios.get(`${ROOT_API}/${API_VERSION}/vacancy`)
       .then(res => {
-        const data = res.data.data.vacancy;
+        const data = res.data.data;
         // console.log(data);
         setVacancy(data);
       })

@@ -13,7 +13,7 @@ export default function TopVacancies() {
   useEffect(() => {
     axios.get(`${ROOT_API}/${API_VERSION}/vacancy/topvacancy`)
       .then(res => {
-        const data = res.data.data.vacancy;
+        const data = res.data.data;
         setDataVacant(data);
         console.log(dataVacant);
       })

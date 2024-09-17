@@ -27,7 +27,7 @@ export default function VacancyDetailPage({id, dataVacant}) {
 
 export async function getStaticPaths() {
   const response = await axios.get(`https://be-magang-production.up.railway.app/api/v1/vacancy`);
-  const data = await response.data.data.vacancy;
+  const data = await response.data.data;
 
   const paths = data.map((item) => ({
     params: { id: item._id}

@@ -20,8 +20,8 @@ export default function ApplicantOverview() {
         Authorization: `Bearer ${jwtToken}`
       }
     }).then(res => {
-      console.log(res.data?.data?.payload);
-      const data = res.data.data.payload;
+      console.log(res.data?.data);
+      const data = res.data.data;
       setSubmission(data);
     }).catch(err => {
       console.log(err.response);

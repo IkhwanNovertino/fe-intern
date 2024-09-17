@@ -1,8 +1,10 @@
 import React from 'react'
 import TempalateDashboardUmpeg from '../template'
 import TableIntern from '@/components/molecules/table-intern'
+import axios from 'axios';
+import { getCookie } from 'cookies-next';
 
-export default function EmployeeUmpeg() {
+export default function InternUmpegPage() {
   return (
     <TempalateDashboardUmpeg>
       <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">

@@ -24,7 +24,7 @@ export default function TableSubmission() {
       }
     }).then(res => {
       // console.log(res.data?.data.payload);
-      const data = res.data.data.payload;
+      const data = res.data.data;
       setSubmission(data);
       console.log(submission);
       

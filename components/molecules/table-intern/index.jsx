@@ -21,7 +21,7 @@ export default function TableIntern() {
         Authorization: `Bearer ${jwtToken}`,
       }
     }).then(res => {
-      const data = res.data.data.intern;
+      const data = res.data.data;
       setIntern(data);
       console.log(data);
       

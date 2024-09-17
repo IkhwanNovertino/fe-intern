@@ -39,7 +39,9 @@ export default function SignInForm() {
         router.push('/');
       }
     }).catch(error => {
-      const errMessage = error.response?.data?.message;
+      const errMessage = error.response.data.errors.message;
+      console.log(errMessage);
+      
       if (errMessage) {
         errMessage.forEach(element => {
           toast.error(element);

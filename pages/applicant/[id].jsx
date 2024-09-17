@@ -41,7 +41,7 @@ export default function SubmissionDetailPage() {
       }
     }).then(res => {
       console.log(res.data?.data);
-      const data = res.data.data.submission;
+      const data = res.data.data;
       setSubmission(data);
       setCandidates(data.candidates)
     }).catch(err => {
