@@ -20,10 +20,8 @@ export default function InternDetailSupervisor() {
     institute: '',
     start_an_internship: 0,
     end_an_internship: 0,
-    submissionID: {
-      offering_letter: '',
-      acceptance_letter: '',
-    }
+    offering_letter: '',
+    acceptance_letter: '',
   });
   const [placement, setPlacement] = useState([{
     biro: {
@@ -34,6 +32,7 @@ export default function InternDetailSupervisor() {
     }
   }]);
   const [logbook, setLogbook] = useState([{
+    _id: '',
     date: 0,
     status: '',
     activity: '',
@@ -56,7 +55,7 @@ export default function InternDetailSupervisor() {
     }).then(res => {
       const data = res.data.data;
       console.log(res);
-      setIntern(data.intern)
+      setIntern(data)
       setPlacement(data.placement)
       setLogbook(data.logbook);
       
@@ -115,11 +114,11 @@ export default function InternDetailSupervisor() {
                   />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                     <p className="text-sm text-light font-medium">File Surat Pengajuan</p>
-                    <p className="text-sm text-dark font-medium md:justify-self-end">{intern.submissionID.offering_letter}</p>
+                    <p className="text-sm text-dark font-medium md:justify-self-end">{intern.offering_letter}</p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                     <p className="text-sm text-light font-medium">File Surat Balasan</p>
-                    <p className="text-sm text-dark font-medium md:justify-self-end">{intern.submissionID.acceptance_letter}</p>
+                    <p className="text-sm text-dark font-medium md:justify-self-end">{intern.acceptance_letter}</p>
                   </div>
                 </section>
               </article>

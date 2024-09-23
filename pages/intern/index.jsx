@@ -17,7 +17,14 @@ export default function DashboardIntern() {
     startAnIntern: 0,
     endAnIntern: 0,
   });
-  const [logbook, setLogbook] = useState([]);
+  const [logbook, setLogbook] = useState([
+    {
+      activity: '',
+      description: '',
+      date: 0,
+      status: '',
+    }
+  ]);
   const [evaluate, setEvaluate] = useState({});
 
   // const token = getCookie('token');
@@ -74,12 +81,12 @@ export default function DashboardIntern() {
               <>
                 {logbook.map((item, index) => (
                   <ItemLogbook
-                    date="02/03/2024"
-                    status="pending"
-                    log_desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus odio quos velit maiores sequi facilis, tenetur numquam aspernatur veritatis laboriosam. Totam, fugiat. Consequuntur hic libero quaerat! Quis possimus excepturi nam alias a natus facere architecto."
+                    date={format(item.date, 'dd/MM/yyyy')}
+                    status={item.status}
+                    log_desc={item.description}
                   >
                     <Link
-                      href="/intern/logbook/id"
+                      href={`/intern/logbook/${item._id}`}
                       className="text-sm text-dark font-medium underline decoration-2"
                     >
                       Detail&gt;

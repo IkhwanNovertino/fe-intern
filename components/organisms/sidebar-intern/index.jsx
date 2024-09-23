@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../sidebar'
 import ProfileHead from '../sidebar/profile-head'
 import Menus from '../sidebar/menus'
 import MenuItem from '../sidebar/menu-item'
 import { usePathname, useRouter } from 'next/navigation'
-import { deleteCookie } from 'cookies-next'
+import { deleteCookie, getCookie } from 'cookies-next'
+import { jwtDecode } from 'jwt-decode'
 
 export default function SidebarIntern() {
+  const [users, setUsers] = useState({
+    name: '',
+    role: '',
+    avatar: '',
+  });
   const pathname = usePathname();
   const router = useRouter();
   const logout = () => {
     deleteCookie('token')
     router.push('/sign-in')
   }
+
+  useEffect(() => {
+    const token = getCookie('token');
+
+    const jwtToken = atob(token);
+    const payload = jwtDecode(jwtToken);
+    const dataUserFromPayload = payload.user;
+    
+    dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
+    // console.log(dataUserFromPayload);
+    setUsers(dataUserFromPayload)
+  }, [])
   return (
     <Sidebar>
       <ProfileHead
-        name={'Seneca'}
+        name={users.name}
         role={'Peserta Magang'}
-        avatar={''}
+        avatar={users.avatar}
       />
       <Menus>
         <MenuItem

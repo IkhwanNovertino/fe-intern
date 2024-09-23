@@ -12,6 +12,7 @@ export default function DetailLogbookIntern() {
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [comment, setComment] = useState([]);
+  const [status, setStatus] = useState('');
   const [disable, setDisable] = useState(true)
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -56,6 +57,7 @@ export default function DetailLogbookIntern() {
       setDescription(data.description);
       setDate(date);
       setComment(data.comment);
+      setStatus(data.status)
     }).catch(err => {
       console.log(err.response);
     })
@@ -115,19 +117,15 @@ export default function DetailLogbookIntern() {
                   disabled={disable}
                 ></textarea>
               </div>
-              <div className="mb-2 md:mb-3">
+              <div className="mb-2 md:mb-14">
                 <label htmlFor="description" className="block text-sm md:text-base font-medium">
                   Tanggapan Pembimbing
                 </label>
-                <textarea
-                  id="description"
-                  name="description"
-                  className="resize-none w-full h-36 focus:outline-none text-base font-normal bg-primary/0 px-5 py-2 md:py-3 mt-2 rounded-xl border border-gray-300 focus-within:border-primary disabled:text-light"
-                  required
-                  disabled={true}
-                >
-                  {comment.length > 0 ? comment.join(' ;') : 'Tidak ada tanggapan dari pembimbing'}
-                </textarea>
+                <ul className="list-disc ml-4">
+                  {comment.map((item, index) => (
+                    <li className="py-2" key={index}>{item}</li>
+                  ))}
+                </ul>
               </div>
               <div>
                 <button
@@ -141,6 +139,7 @@ export default function DetailLogbookIntern() {
                   type={'button'}
                   className='py-2 px-6 mb-3 mr-3 bg-primary/20 rounded font-medium text-primary hover:bg-primary hover:text-white hover:transition hover:duration-300'
                   onClick={(event) => handleUpdateLogbook(event)}
+                  hidden={status === 'pending' ? false : true}
                 >
                   {disable ? 'Ubah' : 'Simpan'}
                 </button>

@@ -4,7 +4,6 @@ import CardInform from '@/components/molecules/card-info'
 import Table from '@/components/atoms/table'
 import TableHead from '@/components/atoms/table-head'
 import TableData from '@/components/atoms/table-data'
-import Link from 'next/link'
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
 import { format } from 'date-fns'
@@ -27,7 +26,6 @@ export default function DashboardSupervisor() {
       console.log(res.data.data);
       const data = res.data.data;
       setIntern(data);
-      console.log(intern);
       
     }).catch(err => {
       console.log(err.response);
@@ -93,17 +91,19 @@ export default function DashboardSupervisor() {
               </thead>
               <tbody>
                 {intern.map((item, index) => (
-                  <tr>
-                    <TableData title={item.intern.name} classname={'uppercase font-semibold'}/>
-                    <TableData title={item.intern.institute} />
-                    <TableData title={format(item.intern.start_an_internship, 'dd/MM/yyyy')} />
-                    <TableData title={format(item.intern.end_an_internship, 'dd/MM/yyyy')} />
-                    <TableData title={item.biro.name} />
+                  <tr key={index}>
+                    <TableData title={item.name} classname={'uppercase font-semibold'}/>
+                    <TableData title={item.institute} />
+                    <TableData title={format(item.start_an_internship, 'dd/MM/yyyy')} />
+                    <TableData title={format(item.end_an_internship, 'dd/MM/yyyy')} />
+                    <TableData title={item.biro} />
                     <TableData
-                      title={item.intern.statusIntern}
-                      classname={(item.intern.statusIntern === 'pending' && 'text-warn') ||
-                        (item.intern.statusIntern === 'active' && 'text-primary') ||
-                        (item.intern.statusIntern === 'active' && 'text-wait')}
+                      title={item.statusIntern}
+                      classname={
+                        (item.statusIntern === 'pending' && 'text-warn') ||
+                        (item.statusIntern === 'active' && 'text-primary') ||
+                        (item.statusIntern === 'active' && 'text-wait')
+                      }
                     />
                   </tr>
                 ))}

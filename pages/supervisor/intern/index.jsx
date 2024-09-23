@@ -51,19 +51,19 @@ export default function InternSupervisor() {
               <tbody>
                 {intern.map((item, index) => (
                   <tr>
-                    <TableData title={item.intern.name} classname={'uppercase font-semibold'}/>
-                    <TableData title={item.intern.id_num}/>
+                    <TableData title={item.name} classname={'uppercase font-semibold'}/>
+                    <TableData title={item.id_num}/>
                     <TableData
-                      title={item.intern.statusIntern}
-                      classname={(item.intern.statusIntern === 'pending' && 'text-secondary') ||
-                        (item.intern.statusIntern === 'active' && 'text-primary') ||
-                        (item.intern.statusIntern === 'finish' && 'text-wait')
+                      title={item.statusIntern}
+                      classname={(item.statusIntern === 'pending' && 'text-secondary') ||
+                        (item.statusIntern === 'active' && 'text-primary') ||
+                        (item.statusIntern === 'finish' && 'text-wait')
                       }
                     />
                     <TableData>
                       <div className="flex flex-wrap gap-2">
                         <Link
-                          href={`/supervisor/intern/${item.intern._id}`}
+                          href={`/supervisor/intern/${item._id}`}
                           className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
                         >
                           Detail
