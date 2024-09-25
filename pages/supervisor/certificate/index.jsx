@@ -7,28 +7,28 @@ import Link from 'next/link'
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
 
-export default function InternSupervisor() {
-  const [intern, setIntern] = useState([]);
+export default function CertificateSupervisor() {
+  // const [intern, setIntern] = useState([]);
 
-  const ROOT_API = process.env.NEXT_PUBLIC_API;
-  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+  // const ROOT_API = process.env.NEXT_PUBLIC_API;
+  // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
-  useEffect(() => {
-    const token = getCookie('token');
-    const jwtToken = atob(token);
+  // useEffect(() => {
+  //   const token = getCookie('token');
+  //   const jwtToken = atob(token);
 
-    axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      }
-    }).then(res => {
-      console.log(res.data.data);
-      const data = res.data.data;
-      setIntern(data);
-    }).catch(err => {
-      console.log(err.response);
-    })
-  }, [])
+  //   axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
+  //     headers: {
+  //       Authorization: `Bearer ${jwtToken}`,
+  //     }
+  //   }).then(res => {
+  //     console.log(res.data.data);
+  //     const data = res.data.data;
+  //     setIntern(data);
+  //   }).catch(err => {
+  //     console.log(err.response);
+  //   })
+  // }, [])
 
   return (
     <TemplateSupervisor>
@@ -38,7 +38,7 @@ export default function InternSupervisor() {
         </header>
         <section className="overview-list-submission">
           <div className="mt-6 w-full lg:max-w-3xl">
-            <Table>
+            {/* <Table>
               <thead>
                 <tr>
                   <TableHead title={'Nama Peserta Magang'}/>
@@ -84,7 +84,7 @@ export default function InternSupervisor() {
                   </tr>
                 ))}
               </tbody>
-            </Table>
+            </Table> */}
           </div>
         </section>
       </section>
