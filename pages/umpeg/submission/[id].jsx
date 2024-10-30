@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SidebarUmpeg from '../sidebar-umpeg';
+// import SidebarUmpeg from '../sidebar-umpeg';
 import Badge from '@/components/atoms/badge';
 import { format } from 'date-fns';
 import DetailData from '@/components/molecules/detail-data';
@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getCookie } from 'cookies-next';
 import { useParams, useRouter } from 'next/navigation';
 import TempalateDashboardUmpeg from '../template';
+import ButtonDownload from '@/components/atoms/button-download';
 
 export default function SubmissionDetailUmpeg() {
   const { id } = useParams();
@@ -181,12 +182,36 @@ export default function SubmissionDetailUmpeg() {
                   />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                     <p className="text-sm text-light font-medium">Surat Pengajuan</p>
-                    <p className="text-sm text-dark font-medium md:justify-self-end"><a href="#">Unduh surat pengajuan</a></p>
+                    <p className="text-sm text-dark font-medium md:justify-self-end">
+                      <ButtonDownload
+                        title={'unduh surat pengajuan'}
+                        category={'offering'}
+                        filename={submission.offering_letter}
+                      />
+                    </p>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                     <p className="text-sm text-light font-medium">File Surat Balasan</p>
                     <p className="text-sm text-dark font-medium md:justify-self-end">
-                      {submission.status === 'confirmed' ? (
+                      {submission.status === 'pending' && (
+                        `Proses pengajuan`
+                      ) || submission.status === 'confirmed' && (
+                        <input
+                          type="file"
+                          accept='application/pdf'
+                          onChange={(event) => setDocAcceptance(event.target.files[0])}
+                          name="acceptance_letter"
+                          id="acceptance_letter"
+                          className="w-full text-sm md:text-base text-light file:py-2 file:px-4 file:border-0 file:rounded-full file:bg-light/40 file:text-black file:font-medium hover:file:bg-primary/50 disabled:file:bg-light/40"
+                        />
+                        ) || submission.status === 'success' && (
+                          <ButtonDownload
+                            title={'unduh surat persetujuan'}
+                            category={'acceptance'}
+                            filename={submission.acceptance_letter}
+                          />
+                      )}
+                      {/* {submission.status === 'confirmed' ? (
                         <input
                           type="file"
                           accept='application/pdf'
@@ -197,7 +222,7 @@ export default function SubmissionDetailUmpeg() {
                         />
                       ) : (
                           <a href="#">Unduh surat balasan</a>
-                      )}
+                      )} */}
                       
                     </p>
                   </div>

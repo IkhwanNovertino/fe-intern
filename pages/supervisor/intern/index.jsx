@@ -6,6 +6,7 @@ import TableData from '@/components/atoms/table-data'
 import Link from 'next/link'
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
+import Badge from '@/components/atoms/badge'
 
 export default function InternSupervisor() {
   const [intern, setIntern] = useState([]);
@@ -52,13 +53,13 @@ export default function InternSupervisor() {
                   <tr key={index}>
                     <TableData title={item.name} classname={'uppercase font-semibold'}/>
                     <TableData title={item.id_num}/>
-                    <TableData
-                      title={item.statusIntern}
-                      classname={(item.statusIntern === 'pending' && 'text-secondary') ||
-                        (item.statusIntern === 'active' && 'text-primary') ||
-                        (item.statusIntern === 'finish' && 'text-wait')
-                      }
-                    />
+                    <TableData>
+                      <Badge
+                        size={'small'}
+                        title={item.statusIntern}
+                        status={(item.statusIntern === 'pending' && 'pending') || (item.statusIntern === 'active' && 'confirmed') || (item.statusIntern === 'finish' && 'success')}
+                      />
+                    </TableData>
                     <TableData>
                       <div className="flex flex-wrap gap-2">
                         <Link
@@ -74,7 +75,7 @@ export default function InternSupervisor() {
                           Logbook
                         </Link>
                         <Link
-                          href={`/supervisor/certificat/${item._id}`}
+                          href={`/supervisor/certificate/${item._id}`}
                           className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
                         >
                           Sertifikat

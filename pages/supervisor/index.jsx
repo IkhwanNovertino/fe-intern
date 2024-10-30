@@ -101,7 +101,7 @@ export default function DashboardSupervisor() {
                       title={item.statusIntern}
                       classname={
                         (item.statusIntern === 'pending' && 'text-warn') ||
-                        (item.statusIntern === 'active' && 'text-primary') ||
+                        (item.statusIntern === 'finish' && 'text-primary') ||
                         (item.statusIntern === 'active' && 'text-wait')
                       }
                     />

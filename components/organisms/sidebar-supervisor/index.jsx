@@ -40,7 +40,7 @@ export default function SidebarSupervisor() {
           active={pathname.includes('/logbook') ? true : false}
         />
         <MenuItem
-          href={"/supervisor/certificate"}
+          href={"/supervisor/intern"}
           title={'Sertifikat'}
           icon={'ic-certificate'}
           active={pathname.includes('/certificate') ? true : false}

@@ -37,6 +37,7 @@ export default function TableIntern() {
           <TableHead title={'NIM/NIS'} />
           <TableHead title={'Mulai Magang'}/>
           <TableHead title={'Selesai Magang'}/>
+          <TableHead title={'Status Peserta'}/>
           <TableHead title={'Aksi'}/>
         </tr>
       </thead>
@@ -47,6 +48,9 @@ export default function TableIntern() {
             <TableData title={item.id_num} />
             <TableData title={format(item.start_an_internship, 'dd MMMM yyyy')} />
             <TableData title={format(item.end_an_internship, 'dd MMMM yyyy')} />
+            <TableData title={item.statusIntern}
+              classname={`font-semibold ${item.statusIntern === 'pending' && 'text-warn' || item.statusIntern === 'active' && 'text-wait' || item.statusIntern === 'finish' && 'text-primary'}`}
+            />
             <TableData>
               <Link
                 href={`/umpeg/intern/${item._id}`}

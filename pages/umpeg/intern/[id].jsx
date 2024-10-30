@@ -144,9 +144,9 @@ export default function InternDetailUmpeg() {
                     <>
                       {logbook.map((item, index) => (
                         <ItemLogbook
-                          date="02/03/2024"
-                          status="pending"
-                          log_desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus odio quos velit maiores sequi facilis, tenetur numquam aspernatur veritatis laboriosam. Totam, fugiat. Consequuntur hic libero quaerat! Quis possimus excepturi nam alias a natus facere architecto."
+                          date={format(item.date, 'dd MMMM yyyy')}
+                          status={item.status}
+                          log_desc={item.description}
                         />
                       ))}
                     </>

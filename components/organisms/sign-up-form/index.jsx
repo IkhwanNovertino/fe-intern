@@ -16,7 +16,7 @@ export default function SignUpForm() {
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const onSubmit = () => {
-    axios.post(`https://magang-beta.onrender.com/api/v1/auth/signup`, {
+    axios.post(`${ROOT_API}/${API_VERSION}/auth/signup`, {
       name, email, institute, password 
     }).then(res => {
       console.log(res);

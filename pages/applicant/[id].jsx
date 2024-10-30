@@ -6,6 +6,7 @@ import { getCookie } from 'cookies-next';
 import Badge from '@/components/atoms/badge';
 import { useParams, useRouter } from 'next/navigation';
 import DetailData from '@/components/molecules/detail-data';
+import ButtonDownload from '@/components/atoms/button-download';
 
 export default function SubmissionDetailPage() {
   const { id } = useParams();
@@ -95,11 +96,27 @@ export default function SubmissionDetailPage() {
                     />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                       <p className="text-sm text-light font-medium">Surat Pengajuan</p>
-                      <p className="text-sm text-dark font-medium md:justify-self-end">{submission.offering_letter}</p>
+                      <p className="text-sm text-dark font-medium md:justify-self-end">
+                        <ButtonDownload
+                          title={'unduh surat pengajuan'}
+                          category={'offering'}
+                          filename={submission.offering_letter}
+                        />
+                      </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
                       <p className="text-sm text-light font-medium">File Surat Balasan</p>
-                      <p className="text-sm text-dark font-medium md:justify-self-end">{submission.acceptance_letter}</p>
+                      <p className="text-sm text-dark font-medium md:justify-self-end">
+                        {submission.acceptance_letter ? (
+                          <ButtonDownload
+                            title={'unduh surat balasan'}
+                            category={'acceptance'}
+                            filename={submission.acceptance_letter}
+                          />
+                        ) : (
+                          'Surat tidak ditemukan'
+                        )}
+                      </p>
                     </div>
                   </section>
                   <section className="min-w-fit md:min-w-96 mt-4 md:mt-10 flex-col">
