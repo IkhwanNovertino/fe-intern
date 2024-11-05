@@ -7,9 +7,12 @@ import Link from 'next/link'
 import axios from 'axios'
 import { getCookie } from 'cookies-next'
 import Badge from '@/components/atoms/badge'
+import { format } from 'date-fns'
 
-export default function InternSupervisor() {
+export default function SupervisorInternListPage({dataIntern}) {
   const [intern, setIntern] = useState([]);
+  console.log(dataIntern);
+  
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
@@ -44,15 +47,17 @@ export default function InternSupervisor() {
                 <tr>
                   <TableHead title={'Nama Peserta Magang'}/>
                   <TableHead title={'NIS/NIM'}/>
+                  <TableHead title={'Waktu Magang'}/>
                   <TableHead title={'Status'}/>
                   <TableHead title={'Aksi'}/>
                 </tr>
               </thead>
               <tbody>
-                {intern.map((item, index) => (
+                {dataIntern.map((item, index) => (
                   <tr key={index}>
                     <TableData title={item.name} classname={'uppercase font-semibold'}/>
                     <TableData title={item.id_num}/>
+                    <TableData title={`${format(item.start_an_internship, 'dd/MM/yyyy')} - ${format(item.end_an_internship, 'dd/MM/yyyy')}`}/>
                     <TableData>
                       <Badge
                         size={'small'}
@@ -91,4 +96,25 @@ export default function InternSupervisor() {
       </section>
     </TemplateSupervisor>
   )
+}
+
+export async function getServerSideProps({req}) {
+  const { token } = req.cookies;
+
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+
+  const jwtToken = Buffer.from(token, "base64").toString('ascii');
+
+  const response = await axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`
+    }
+  })
+
+  return {
+    props: {
+      dataIntern: response.data.data
+    },
+  };
 }

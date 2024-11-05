@@ -111,7 +111,7 @@ export default function DetailIntern({ data }) {
           <header className="text-base font-bold text-primary mb-4">Data Penempatan Peserta</header>
           <section className="w-fit flex flex-wrap gap-4">
             {placement.map((item, index) => (
-              <CardInform >
+              <CardInform key={index} >
                 <div className="pr-4">
                   <p className="text-xs text-light">{format(intern.start_an_internship, 'dd MMMM yyyy')} - {format(intern.end_an_internship, 'dd MMMM yyyy')}</p>
                   <p className="text-base text-dark font-semibold">{item.biro.name}</p>
@@ -129,6 +129,7 @@ export default function DetailIntern({ data }) {
               <>
                 {logbook.map((item, index) => (
                   <ItemLogbook
+                    key={index}
                     date={format(item.date, 'dd MMMM yyyy')}
                     status={item.status}
                     log_desc={item.description}

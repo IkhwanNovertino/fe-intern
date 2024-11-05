@@ -18,3 +18,16 @@ export default function UmpegSubmissionListPage() {
     </TempalateDashboardUmpeg>
   )
 }
+
+export async function getServerSideProps({req}) {
+  const { token } = req.cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+}

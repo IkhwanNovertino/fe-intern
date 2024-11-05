@@ -15,11 +15,7 @@ export default function SidebarSupervisor() {
   }
   return (
     <Sidebar>
-      <ProfileHead
-        name={'Seneca, M.Kom'}
-        role={'Pembimbing'}
-        avatar={''}
-      />
+      <ProfileHead/>
       <Menus>
         <MenuItem
           href={"/supervisor"}

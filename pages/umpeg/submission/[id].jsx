@@ -25,6 +25,15 @@ export async function getServerSideProps({req, params}) {
   const {token} = req.cookies;
   const { id } = params;
 
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
   const jwtToken = Buffer.from(token, "base64").toString('ascii');
 
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/submission/${id}`, {

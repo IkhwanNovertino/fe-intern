@@ -27,7 +27,7 @@ export default function ProfileHead({ name, role, avatar }) {
     <header className="flex flex-col items-center justify-center pt-10 pb-5 px-16">
       <div className="img-profile w-44 h-44 bg-blue/20 rounded-full">
         <Image
-            src={users.avatar.includes('/none') ? profilePic : users.avatar}
+            src={profilePic}
             width={176}
             height={176}
             className="w-44 h-44 rounded-full"
