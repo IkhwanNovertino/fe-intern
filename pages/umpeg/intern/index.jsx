@@ -1,10 +1,8 @@
 import React from 'react'
 import TempalateDashboardUmpeg from '../template'
-import TableIntern from '@/components/molecules/table-intern'
-import axios from 'axios';
-import { getCookie } from 'cookies-next';
+import UmpegTableIntern from '@/components/organisms/umpeg-table-intern'
 
-export default function InternUmpegPage() {
+export default function UmpegInternListPage() {
   return (
     <TempalateDashboardUmpeg>
       <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
@@ -13,7 +11,7 @@ export default function InternUmpegPage() {
         </header>
         <section className="overview-list-submission">
           <div className="mt-6 w-full lg:max-w-3xl">
-            <TableIntern />
+            <UmpegTableIntern />
           </div>
         </section>
       </section>

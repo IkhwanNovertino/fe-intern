@@ -222,19 +222,19 @@ export default function UmpegSubmissionDetail({data}) {
         >
           Kembali
         </button>
-        {submission.status === 'failed' || submission.status === 'success' || submission.status === 'waiting' || submission.status === 'confirmed' ? (
+        {submission.status === 'pending' ? (
           <button
             type="button"
-            className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary disabled:cursor-not-allowed'
-            disabled
+            className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary hover:bg-secondary/100 hover:text-white hover:transition hover:duration-300'
+            onClick={handleRejectSubmission}
           >
             Tolak Pengajuan
           </button>
         ) : (
           <button
             type="button"
-            className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary hover:bg-secondary/100 hover:text-white hover:transition hover:duration-300'
-            onClick={handleRejectSubmission}
+            className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary disabled:cursor-not-allowed'
+            disabled
           >
             Tolak Pengajuan
           </button>

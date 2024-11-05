@@ -8,7 +8,7 @@ import axios from 'axios'
 import { getCookie } from 'cookies-next'
 import { format } from 'date-fns'
 
-export default function DashboardSupervisor() {
+export default function DashboardSupervisorPage() {
   const [intern, setIntern] = useState([]);
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;

@@ -5,11 +5,14 @@ import ItemLogbook from '@/components/molecules/item-logbook'
 import DetailData from '@/components/molecules/detail-data'
 import { format } from 'date-fns'
 import ButtonDownload from '@/components/atoms/button-download'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
-export default function UmpegInternDetail({ data }) {
-  console.log(data);
+export default function DetailIntern({ data }) {
+  const router = useRouter();
   
   const [intern, setIntern] = useState({
+    _id: '',
     name: '',
     id_num: '',
     email: '',
@@ -131,6 +134,12 @@ export default function UmpegInternDetail({ data }) {
                     log_desc={item.description}
                   />
                 ))}
+                <Link
+                  href={`/umpeg/intern/${intern._id}`}
+                  className="px-2 py-2 mr-0 mt-3  rounded font-medium text-dark hover:underline hover:decoration-dark hover:decoration-2 hover:underline-offset-4"
+                >
+                  Daftar Logbook
+                </Link>
               </>
             ) : (
                 <div>Laporan kegiatan belum diisi...</div>
@@ -143,6 +152,15 @@ export default function UmpegInternDetail({ data }) {
             SERTIFIKAT BELUM ADA
           </section>
         </article>
+      </div>
+      <div className="py-4 px-2 mb-4 flex-col md:flex-row md:justify-around">
+        <button
+          type="button"
+          className='py-2 px-6 mb-3 mr-3 rounded bg-slate-200 font-medium hover:bg-slate-700 hover:text-slate-50 hover:transition hover:duration-300'
+          onClick={() => router.back()}
+        >
+          Kembali
+        </button>
       </div>
     </div>
   )

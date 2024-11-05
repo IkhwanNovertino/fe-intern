@@ -1,8 +1,8 @@
 import React from 'react'
-import TableSubmission from '@/components/molecules/table-submission'
 import TempalateDashboardUmpeg from '../template'
+import UmpegTableSubmission from '@/components/organisms/umpeg-table-submission'
 
-export default function SubmissionUmpeg() {
+export default function UmpegSubmissionListPage() {
   return (
     <TempalateDashboardUmpeg>
       <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
@@ -11,7 +11,7 @@ export default function SubmissionUmpeg() {
         </header>
         <section className="overview-list-submission">
           <div className="mt-6 w-full lg:max-w-3xl">
-            <TableSubmission />
+            <UmpegTableSubmission />
           </div>
         </section>
       </section>

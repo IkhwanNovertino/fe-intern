@@ -1,12 +1,12 @@
 import React from 'react'
 import TempalateDashboardUmpeg from '../template'
 import axios from 'axios'
-import UmpegInternDetail from '@/components/organisms/umpeg-intern-detail';
+import DetailIntern from '@/components/organisms/detail-intern-component';
 
-  const ROOT_API = process.env.NEXT_PUBLIC_API;
-  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+const ROOT_API = process.env.NEXT_PUBLIC_API;
+const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
-export default function InternDetailUmpeg({internDetail}) {
+export default function UmpegInternDetailPage({internDetail}) {
 
 
   return (
@@ -16,7 +16,7 @@ export default function InternDetailUmpeg({internDetail}) {
           <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Detail Peserta Magang</h1>
         </header>
         <section className="header-section w-[640px] mt-12">
-          <UmpegInternDetail data={internDetail}/>
+          <DetailIntern data={internDetail}/>
         </section>
       </section>
     </TempalateDashboardUmpeg>

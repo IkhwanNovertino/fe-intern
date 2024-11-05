@@ -8,11 +8,11 @@ import { deleteCookie, getCookie } from 'cookies-next'
 import { jwtDecode } from 'jwt-decode';
 
 export default function SidebarUmpeg() {
-  const [users, setUsers] = useState({
-    name: '',
-    role: '',
-    avatar: '',
-  });
+  // const [users, setUsers] = useState({
+  //   name: '',
+  //   role: '',
+  //   avatar: '',
+  // });
   const pathname = usePathname()
   const router = useRouter();
   const logout = () => {
@@ -20,25 +20,21 @@ export default function SidebarUmpeg() {
     router.push('/sign-in')
   }
 
-  useEffect(() => {
-    const token = getCookie('token');
+  // useEffect(() => {
+  //   const token = getCookie('token');
 
-    const jwtToken = atob(token);
-    const payload = jwtDecode(jwtToken);
-    const dataUserFromPayload = payload.user;
+  //   const jwtToken = atob(token);
+  //   const payload = jwtDecode(jwtToken);
+  //   const dataUserFromPayload = payload.user;
     
-    dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
-    // console.log(dataUserFromPayload);
-    setUsers(dataUserFromPayload)
+  //   dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
+  //   // console.log(dataUserFromPayload);
+  //   setUsers(dataUserFromPayload)
     
-  }, [])
+  // }, [])
   return (
     <Sidebar>
-      <ProfileHead
-        name={users.name}
-        role={users.role}
-        avatar={users.avatar}
-      />
+      <ProfileHead />
       <Menus>
         <MenuItem
           href={"/umpeg"}
