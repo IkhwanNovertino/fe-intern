@@ -135,7 +135,7 @@ export default function DetailIntern({ data }) {
                   />
                 ))}
                 <Link
-                  href={`/umpeg/intern/${intern._id}`}
+                  href={`/umpeg/logbook/${intern._id}`}
                   className="px-2 py-2 mr-0 mt-3  rounded font-medium text-dark hover:underline hover:decoration-dark hover:decoration-2 hover:underline-offset-4"
                 >
                   Daftar Logbook

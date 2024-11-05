@@ -2,9 +2,11 @@ import ItemLogbook from '@/components/molecules/item-logbook'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
-export default function LogbookPerIntern({intern, logbook, url}) {
+export default function UmpegLogbookDetail({ intern, logbook, url }) {
+  const router = useRouter();
   return (
     <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
       <header className="overview-title">
@@ -36,18 +38,18 @@ export default function LogbookPerIntern({intern, logbook, url}) {
               <ItemLogbook
                 key={index}
                 date={format(item.date, 'dd/MM/yyyy')}
-                log_desc={item.activity}
+                log_desc={`${item.description}`}
                 status={item.status}
-              >
-                <Link
-                  href={`/${url}/logbook/${item._id}`}
-                  className="text-sm text-dark font-medium underline decoration-2"
-                >
-                  Detail&gt;
-                </Link>
-              </ItemLogbook>
+              />
             ))}
           </div>
+          <button
+            type="button"
+            className='py-2 px-6 mb-3 mr-3 rounded bg-slate-200 font-medium hover:bg-slate-700 hover:text-slate-50 hover:transition hover:duration-300'
+            onClick={() => router.back()}
+          >
+            Kembali
+          </button>
         </div>
       </section>
     </section>
