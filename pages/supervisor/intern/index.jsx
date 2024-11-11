@@ -101,6 +101,15 @@ export default function SupervisorInternListPage({dataIntern}) {
 export async function getServerSideProps({req}) {
   const { token } = req.cookies;
 
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
