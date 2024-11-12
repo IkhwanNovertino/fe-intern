@@ -7,9 +7,6 @@ const ROOT_API = process.env.NEXT_PUBLIC_API;
 const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
 export default function UmpegInternDetailPage({internDetail}) {
-  console.log(internDetail);
-  
-
   return (
     <TempalateDashboardUmpeg>
       <section className="content-wrapper bg-ternary pl-4 pr-4 py-4">

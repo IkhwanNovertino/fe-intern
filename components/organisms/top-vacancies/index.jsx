@@ -4,20 +4,23 @@ import CardVacancy from '@/components/molecules/card-vacancy';
 import axios from 'axios';
 import { format } from 'date-fns';
 
-export default function TopVacancies() {
-  const [dataVacant, setDataVacant] = useState([]);
+export default function TopVacancies({ data}) {
+  console.log(`data vacancy`);
+  console.log(data);
+  
+  // const [dataVacant, setDataVacant] = useState([]);
 
-  const ROOT_API = process.env.NEXT_PUBLIC_API;
-  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+  // const ROOT_API = process.env.NEXT_PUBLIC_API;
+  // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
-  useEffect(() => {
-    axios.get(`${ROOT_API}/${API_VERSION}/vacancy/topvacancy`)
-      .then(res => {
-        const data = res.data.data;
-        setDataVacant(data);
-        console.log(dataVacant);
-      })
-  },[])
+  // useEffect(() => {
+  //   axios.get(`${ROOT_API}/${API_VERSION}/vacancy/topvacancy`)
+  //     .then(res => {
+  //       const data = res.data.data;
+  //       setDataVacant(data);
+  //       console.log(dataVacant);
+  //     })
+  // },[])
 
   return (
     <div className="bg-white w-full flex items-center">
@@ -31,7 +34,7 @@ export default function TopVacancies() {
           </div>
           <div className="w-fit mb-6">
             <div className="grid grid-cols-1 w-full md:grid-cols-2 gap-3 lg:grid-cols-3">
-              {dataVacant.map(item => (
+              {/* {dataVacant.map(item => (
                 <CardVacancy
                   key={item._id}
                   id={item._id}
@@ -40,7 +43,7 @@ export default function TopVacancies() {
                   duration={item.duration}
                   start_internship={format(item.start_an_intern, 'dd MMMM yyyy')}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
           <div className="py-4 px-2">
@@ -59,4 +62,25 @@ export default function TopVacancies() {
       </div>
     </div>
   );
+}
+
+
+
+export async function getServerSideProps({ req }) {
+  try {
+    const ROOT_API = process.env.NEXT_PUBLIC_API;
+    const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+  
+    const response = await fetch(`http://localhost:5000/api/v1/vacancy/topvacancy`)
+    const data = response.data
+  
+    return {
+      props: {
+        data
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return { props: { data: 'Gagal mengambil data' } };
+  }
 }

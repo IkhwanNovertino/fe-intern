@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function UmpegSubmissionDetail({data}) {
   const router = useRouter();
   const [submission, setSubmission] = useState({
-    id: '',
+    _id: '',
     doc_institute: '',
     doc_number: '',
     doc_date: 0,
@@ -46,9 +46,11 @@ export default function UmpegSubmissionDetail({data}) {
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
   const token = getCookie('token');
+  // console.log(token);
+  
   const jwtToken = atob(token);
 
-  const handleRejectSubmission = () => { 
+  const handleRejectSubmission = (id) => { 
     axios.put(`${ROOT_API}/${API_VERSION}/submission/status/${id}?status=failed`, {}, {
       headers: {Authorization: `Bearer ${jwtToken}`}
     }).then(res => {
@@ -59,7 +61,7 @@ export default function UmpegSubmissionDetail({data}) {
       console.log(err.response);
     })
   };
-  const handlerAcceptSubmission = () => {
+  const handlerAcceptSubmission = (id) => {
     axios.put(`${ROOT_API}/${API_VERSION}/submission/status/${id}?status=confirmed`, {}, {
       headers: {Authorization: `Bearer ${jwtToken}`}
     }).then(res => {
@@ -70,7 +72,7 @@ export default function UmpegSubmissionDetail({data}) {
       console.log(err.response);
     })
   };
-  const handlerSubmitAcceptLetter = (event) => {
+  const handlerSubmitAcceptLetter = (event, id) => {
     event.preventDefault();
     if (!docAcceptance) return toast.error('Surat Balasan tidak ditemukan. Masukkan surat');
     console.log(docAcceptance);
@@ -91,7 +93,7 @@ export default function UmpegSubmissionDetail({data}) {
 
   useEffect(() => {
     setSubmission(data)
-  },[submission.id])
+  },[submission._id])
   return (
     <div className="mt-6 w-full lg:max-w-3xl">
       <div className="min-w-fit mb-6 rounded-xl">
@@ -226,7 +228,7 @@ export default function UmpegSubmissionDetail({data}) {
           <button
             type="button"
             className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary hover:bg-secondary/100 hover:text-white hover:transition hover:duration-300'
-            onClick={handleRejectSubmission}
+            onClick={handleRejectSubmission(submission._id)}
           >
             Tolak Pengajuan
           </button>
@@ -253,7 +255,7 @@ export default function UmpegSubmissionDetail({data}) {
                 <button
                   type="button"
                   className='py-2 px-6 mb-3 mr-3 bg-primary/20 rounded font-medium text-primary hover:bg-primary hover:text-white hover:transition hover:duration-300'
-                  onClick={handlerAcceptSubmission}
+                  onClick={handlerAcceptSubmission(submission._id)}
                 >
                   Proses Pengajuan
                 </button>
@@ -261,7 +263,7 @@ export default function UmpegSubmissionDetail({data}) {
                 <button
                   type="button"
                   className='py-2 px-6 mb-3 mr-3 bg-primary/20 rounded font-medium text-primary hover:bg-primary hover:text-white hover:transition hover:duration-300'
-                  onClick={handlerSubmitAcceptLetter}
+                  onClick={e => handlerSubmitAcceptLetter(e, submission._id)}
                 >
                   Kirim Surat Balasan
                 </button>
