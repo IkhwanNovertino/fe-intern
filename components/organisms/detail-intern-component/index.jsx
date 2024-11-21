@@ -11,6 +11,7 @@ import HeadProfileIntern from '../header-profile-intern'
 import DataSubmissionIntern from './data-submission-intern'
 import DataPlacementIntern from './data-placement-intern'
 import DataLogbookIntern from './data-logbook-intern'
+import CertificateComponent from '@/components/atoms/certificate'
 
 export default function DetailIntern({ data }) {
   const router = useRouter();
@@ -59,11 +60,11 @@ export default function DetailIntern({ data }) {
         <article className="submission-data w-full mb-5">
         <header className="text-base font-bold text-primary mb-4">Data Penilaian Peserta</header>
           <section className="w-full">
-            SERTIFIKAT BELUM ADA
+            <CertificateComponent isDownload={false} />
           </section>
         </article>
       </div>
-      <div className="py-4 px-2 mb-4 flex-col md:flex-row md:justify-around">
+      <div className="py-4 px-2 mb-4">
         <button
           type="button"
           className='py-2 px-6 mb-3 mr-3 rounded bg-slate-200 font-medium hover:bg-slate-700 hover:text-slate-50 hover:transition hover:duration-300'

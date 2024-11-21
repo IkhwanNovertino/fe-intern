@@ -13,3 +13,10 @@
 .main-wrapper::-webkit-scrollbar {
   display: none;
 }
+
+#certificate #certificate-first-page {
+  background-image: url("/img/background-sertif.png");
+}
+#certificate #certificate-second-page {
+  background-image: url("/img/background-sertif.png");
+}
