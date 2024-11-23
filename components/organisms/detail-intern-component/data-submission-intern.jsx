@@ -3,7 +3,7 @@ import DetailData from '@/components/molecules/detail-data'
 import { format } from 'date-fns'
 import React from 'react'
 
-export default function DataSubmissionIntern() {
+export default function DataSubmissionIntern({data}) {
   return (
     <article className="submission-data w-full mb-5">
       <header className="text-base font-bold text-primary mb-4">
@@ -12,19 +12,19 @@ export default function DataSubmissionIntern() {
       <section className="">
         <DetailData
           title={'Jurusan'}
-          data={`intern.major`}
+          data={data.major}
         />
         <DetailData
           title={'Sekolah/Kampus/Instansi'}
-          data={`intern.institute`}
+          data={data.institute}
         />
         <DetailData
           title={'Mulai Magang'}
-          data={format('2024-07-07', 'dd MMMM yyyy')}
+          data={format(data.start_an_internship, 'dd MMMM yyyy')}
         />
         <DetailData
           title={'Selesai Magang'}
-          data={format('2024-07-07', 'dd MMMM yyyy')}
+          data={format(data.end_an_internship, 'dd MMMM yyyy')}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-1 mb-3">
           <p className="text-sm text-light font-medium">File Surat Pengajuan</p>
@@ -32,7 +32,7 @@ export default function DataSubmissionIntern() {
             <ButtonDownload
               title={'unduh surat pengajuan'}
               category={'offering'}
-              filename={`intern.offering_letter`}
+              filename={data.offering_letter}
             />
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function DataSubmissionIntern() {
             <ButtonDownload
               title={'unduh surat persetujuan'}
               category={'acceptance'}
-              filename={`intern.acceptance_letter`}
+              filename={data.acceptance_letter}
             />
           </p>
         </div>

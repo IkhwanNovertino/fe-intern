@@ -53,129 +53,136 @@ export default function CertificateTemplate() {
       >
         <div className='certificate-second-header flex justify-center mb-4 mt-8'>
           <table className='text-left'>
-            <tr>
-              <td className='text-xs pr-20'>Nama</td>
-              <td className='text-xs px-1'>:</td>
-              <td className='text-xs px-2'>Omirassby Rummi</td>
-            </tr>
-            <tr>
-              <td className='text-xs pr-20'>Jurusan</td>
-              <td className='text-xs px-1'>:</td>
-              <td className='text-xs px-2'>Sistem Informasi</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td className='text-xs pr-20'>Nama</td>
+                <td className='text-xs px-1'>:</td>
+                <td className='text-xs px-2'>Omirassby Rummi</td>
+              </tr>
+              <tr>
+                <td className='text-xs pr-20'>Jurusan</td>
+                <td className='text-xs px-1'>:</td>
+                <td className='text-xs px-2'>Sistem Informasi</td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className='certificate-table-evaluate mb-5'>
           <table className='border-collapse border border-slate-500 text-left'>
-            <tr>
-              <th rowSpan={2} className='border border-slate-600 text-xs text-center px-2 py-2'>No</th>
-              <th rowSpan={2} className='border border-slate-600 text-xs text-center px-16 py-2'>Komponen Yang Dinilai</th>
-              <th colSpan={2} className='border border-slate-600 text-xs text-center'>Nilai</th>
-            </tr>
-            <tr>
-              <th className='border border-slate-600 text-xs text-center px-6'>
-                Angka
-              </th>
-              <th className='border border-slate-600 text-xs text-center px-6'>
-                Huruf
-              </th>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>1</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kedisiplinan</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>2</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kerjasama</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>3</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Daya Kreasi</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>4</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Etos Kerja</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>5</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kinerja</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-            </tr>
-            <tr>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'></th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-left'>Jumlah</th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>89</th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>A</th>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>1</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kedisiplinan</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>2</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kerjasama</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>3</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Daya Kreasi</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>4</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Etos Kerja</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>5</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-left'>Kinerja</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
-              <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
-            </tr>
-            <tr>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-              <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
-            </tr>
-            <tr>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'></th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-left'>Jumlah</th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>89</th>
-              <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>A</th>
-            </tr>
+            <thead>
+              <tr>
+                <th rowSpan={2} className='border border-slate-600 text-xs text-center px-2 py-2'>No</th>
+                <th rowSpan={2} className='border border-slate-600 text-xs text-center px-16 py-2'>Komponen Yang Dinilai</th>
+                <th colSpan={2} className='border border-slate-600 text-xs text-center'>Nilai</th>
+              </tr>
+              <tr>
+                <th className='border border-slate-600 text-xs text-center px-6'>
+                  Angka
+                </th>
+                <th className='border border-slate-600 text-xs text-center px-6'>
+                  Huruf
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>1</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kedisiplinan</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>2</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kerjasama</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>3</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Daya Kreasi</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>4</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Etos Kerja</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>5</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kinerja</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+              </tr>
+              <tr>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'></th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-left'>Jumlah</th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>89</th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>A</th>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>1</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kedisiplinan</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>2</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kerjasama</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>3</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Daya Kreasi</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>4</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Etos Kerja</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>5</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-left'>Kinerja</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>89</td>
+                <td className='border-r border-slate-600 text-xs px-2 text-center'>A</td>
+              </tr>
+              <tr>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+                <td className='border-r border-slate-600 text-xs px-2 py-0.5 text-center'></td>
+              </tr>
+              <tr>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'></th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-left'>Jumlah</th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>89</th>
+                <th className='border border-slate-600 text-xs px-2 pb-2 text-center'>A</th>
+              </tr>
+            </tbody>
           </table>
         </div>
       </section>

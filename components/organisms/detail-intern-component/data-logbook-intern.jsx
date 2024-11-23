@@ -1,7 +1,14 @@
+import ItemLogbook from '@/components/molecules/item-logbook';
+import { format } from 'date-fns';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { useState } from 'react'
 
-export default function DataLogbookIntern() {
-  const [logbook, setLogbook] = useState([]);
+export default function DataLogbookIntern({data, id}) {
+
+  const pathname = usePathname();
+  const pathLink = pathname.split('/');
+  
   return (
     <div>
       <article className="submission-data w-full mb-5">
@@ -9,9 +16,9 @@ export default function DataLogbookIntern() {
           Data Kegiatan Peserta
         </header>
         <section className="">
-          {logbook.length > 0 ? (
+          {data.length > 0 ? (
             <>
-              {logbook.map((item, index) => (
+              {data.map((item, index) => (
                 <ItemLogbook
                   key={index}
                   date={format(item.date, 'dd MMMM yyyy')}
@@ -23,7 +30,7 @@ export default function DataLogbookIntern() {
                 className="px-0.5 py-2 mr-0 mt-3 rounded font-medium text-dark hover:underline hover:decoration-dark hover:decoration-2 hover:underline-offset-4"
               >
                 <Link
-                  href={`/umpeg/logbook/${intern._id}`}
+                  href={`/${pathLink[1]}/logbook/${id}`}
                 >
                   Daftar Logbook
                 </Link>

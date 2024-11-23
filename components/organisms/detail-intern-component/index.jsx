@@ -15,13 +15,17 @@ import CertificateComponent from '@/components/atoms/certificate'
 
 export default function DetailIntern({ data }) {
   const router = useRouter();
-  
-  const [intern, setIntern] = useState({
+
+  const [profile, setProfile] = useState({
     _id: '',
     name: '',
     id_num: '',
     email: '',
-    phone_num: '',
+    statusIntern: '',
+  })
+  
+  const [intern, setIntern] = useState({
+    _id: '',
     major: '',
     institute: '',
     start_an_internship: 0,
@@ -29,14 +33,16 @@ export default function DetailIntern({ data }) {
     offering_letter: '',
     acceptance_letter: '',
   });
+
   const [placement, setPlacement] = useState([{
     biro: {
-      name: '',
+      name: ''
     },
     supervisor: {
-      name: ''
+      name: '',
     }
   }]);
+  
   const [logbook, setLogbook] = useState([{
     date: 0,
     status: '',
@@ -45,22 +51,28 @@ export default function DetailIntern({ data }) {
   }])
 
   useEffect(() => {
-    setIntern(data)
-    setPlacement(data.placement)
+    setIntern(data);
+    setProfile(data);
+    setPlacement(data.placement);
     setLogbook(data.logbook);
-  }, [setIntern])
+  }, [])
   return (
     <div className="mb-6">
-      <HeadProfileIntern />
+      <HeadProfileIntern data={profile} />
       <div className="body flex flex-col items-start gap-2">
         <div className="h-1.5 w-full bg-secondary/20 mb-2 mt-2" />
-        <DataSubmissionIntern />
-        <DataPlacementIntern />
-        <DataLogbookIntern />
+        <DataSubmissionIntern data={intern} />
+        <DataPlacementIntern data={placement} start_internship={intern.start_an_internship} end_internship={intern.end_an_internship} />
+        <DataLogbookIntern data={logbook} id={intern._id} />
         <article className="submission-data w-full mb-5">
-        <header className="text-base font-bold text-primary mb-4">Data Penilaian Peserta</header>
+          <header className="text-base font-bold text-primary mb-4">
+            Data Penilaian Peserta
+          </header>
           <section className="w-full">
-            <CertificateComponent isDownload={false} />
+            {data.evaluate == null ? 
+              <div>Penilaian belum tersedia</div> :
+              <div>Penilaian sudah tersedia</div>
+            }
           </section>
         </article>
       </div>
