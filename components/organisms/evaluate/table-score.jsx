@@ -1,15 +1,14 @@
-import Table from '@/components/atoms/table'
+import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import axios from 'axios'
 import TableData from '@/components/atoms/table-data'
 import TableHead from '@/components/atoms/table-head'
-import axios from 'axios'
-import { getCookie } from 'cookies-next'
-import Link from 'next/link'
-import { useParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
+const Table = dynamic(() => import('@/components/atoms/table'), {ssr: false})
 
-export default function TableScore() {
-
+export default function TableScore({ data, token, id }) {
   const [score, setScore] = useState([
     {
       number: 0,
@@ -22,25 +21,22 @@ export default function TableScore() {
     }
   ]);
   const [idEvaluate, setIdEvaluate] = useState('');
-
-  const { id } = useParams();
-  const token = getCookie('token');
-  const jwtToken = atob(token);
+  const router = useRouter();
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const handlerDeleteScore = (idScore) => {
     const score = idScore
-    console.log(idScore);
     
     axios.put(`${ROOT_API}/${API_VERSION}/evaluation/${idEvaluate}`,
       {score}, {
       headers: {
-        Authorization: `Bearer ${jwtToken}`,
+        Authorization: `Bearer ${token}`,
       }
     }).then(res => {
-      console.log(res);
+      toast.success('Nilai berhasil dihapus')
+      router.refresh();
     }).catch(err => {
       console.log(err);
     })
@@ -49,18 +45,8 @@ export default function TableScore() {
   ;
 
   useEffect(() => {
-    
-    axios.get(`${ROOT_API}/${API_VERSION}/evaluation/${id}`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      }
-    }).then(res => {
-      // console.log(res);
-      setScore(res.data.data.score)
-      setIdEvaluate(res.data.data._id);
-    }).catch(err => {
-      console.log(err);
-    })
+    data ? setScore(data.score) : setScore(score);
+    data ? setIdEvaluate(data._id) : setIdEvaluate(idEvaluate);
   }, [])
 
   return (
@@ -69,37 +55,27 @@ export default function TableScore() {
       <article className="submission-data w-full mb-5">
         <header className="text-base font-bold text-primary mb-4">Nilai Peserta Magang</header>
         <section className="mt-6">
-          <Table>
+          <table className="table-fixed min-w-96 max-w-lg border-separate border-spacing-y-5 border-spacing-x-3.5">
             <thead>
               <TableHead title={'Komponen Nilai'} />
+              <TableHead title={'Kategori'} />
               <TableHead title={'Nilai'} />
               <TableHead title={'Aksi'} />
             </thead>
             <tbody>
-              {/* <tr>
-                <TableData title={'Disiplin waktu'} />
-                <TableData title={'80'} />
-                <TableData>
-                  <div className="flex flex-wrap gap-2">
-                    <Link
-                      href={`/supervisor/logbook/all`}
-                      className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-secondary/50 rounded-md"
-                    >
-                      Hapus
-                    </Link>
-                  </div>
-                </TableData>
-              </tr> */}
               {score.map((item, index) => (
                 <tr key={index}>
                   <TableData title={item.title.title} />
+                  <TableData title={(item.title.category === 'T' ? 'Teknis' : 'Non-Teknis')} />
                   <TableData title={item.number} />
                   <TableData>
                     <div className="flex flex-wrap gap-2">
                       <button
                         type='button'
                         onClick={e => handlerDeleteScore(item._id)}
-                        className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-secondary/50 rounded-md"
+                        className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-secondary/50 rounded-md disabled:bg-secondary/10 disabled:text-dark/50"
+                        // disabled={(data.status === 'pending' ? false : true)}
+                        disabled={true}
                       >
                         Hapus
                       </button>
@@ -108,7 +84,7 @@ export default function TableScore() {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </table>
         </section>
       </article>
     </div>

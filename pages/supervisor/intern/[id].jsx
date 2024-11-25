@@ -86,6 +86,15 @@ export async function getServerSideProps({req, params}) {
   const {token} = req.cookies;
   const { id } = params;
 
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 

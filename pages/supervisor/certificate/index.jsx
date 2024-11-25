@@ -5,30 +5,16 @@ import TableHead from '@/components/atoms/table-head'
 import TableData from '@/components/atoms/table-data'
 import Link from 'next/link'
 import axios from 'axios'
-import { getCookie } from 'cookies-next'
+import Badge from '@/components/atoms/badge'
+import { format } from 'date-fns'
 
-export default function CertificateSupervisor() {
-  // const [intern, setIntern] = useState([]);
+export default function SupervisorCertificateListPage({dataIntern}) {
+  const [intern, setIntern] = useState([]);
+  console.log(dataIntern);
 
-  // const ROOT_API = process.env.NEXT_PUBLIC_API;
-  // const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
-
-  // useEffect(() => {
-  //   const token = getCookie('token');
-  //   const jwtToken = atob(token);
-
-  //   axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
-  //     headers: {
-  //       Authorization: `Bearer ${jwtToken}`,
-  //     }
-  //   }).then(res => {
-  //     console.log(res.data.data);
-  //     const data = res.data.data;
-  //     setIntern(data);
-  //   }).catch(err => {
-  //     console.log(err.response);
-  //   })
-  // }, [])
+  useEffect(() => {
+    setIntern(dataIntern)
+  }, [])
 
   return (
     <TemplateSupervisor>
@@ -38,43 +24,25 @@ export default function CertificateSupervisor() {
         </header>
         <section className="overview-list-submission">
           <div className="mt-6 w-full lg:max-w-3xl">
-            {/* <Table>
+            <Table>
               <thead>
                 <tr>
                   <TableHead title={'Nama Peserta Magang'}/>
                   <TableHead title={'NIS/NIM'}/>
-                  <TableHead title={'Status'}/>
+                  <TableHead title={'Waktu Magang'}/>
                   <TableHead title={'Aksi'}/>
                 </tr>
               </thead>
               <tbody>
-                {intern.map((item, index) => (
+                {dataIntern.map((item, index) => (
                   <tr key={index}>
                     <TableData title={item.name} classname={'uppercase font-semibold'}/>
                     <TableData title={item.id_num}/>
-                    <TableData
-                      title={item.statusIntern}
-                      classname={(item.statusIntern === 'pending' && 'text-secondary') ||
-                        (item.statusIntern === 'active' && 'text-primary') ||
-                        (item.statusIntern === 'finish' && 'text-wait')
-                      }
-                    />
+                    <TableData title={`${format(item.start_an_internship, 'dd/MMM/yyyy')} - ${format(item.end_an_internship, 'dd/MMM/yyyy')}`}/>
                     <TableData>
                       <div className="flex flex-wrap gap-2">
                         <Link
-                          href={`/supervisor/intern/${item._id}`}
-                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                        >
-                          Detail
-                        </Link>
-                        <Link
-                          href={`/supervisor/logbook/all/${item._id}`}
-                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                        >
-                          Logbook
-                        </Link>
-                        <Link
-                          href={`/supervisor/certificat/${item._id}`}
+                          href={`/supervisor/certificate/${item._id}`}
                           className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
                         >
                           Sertifikat
@@ -84,10 +52,40 @@ export default function CertificateSupervisor() {
                   </tr>
                 ))}
               </tbody>
-            </Table> */}
+            </Table>
           </div>
         </section>
       </section>
     </TemplateSupervisor>
   )
+}
+
+export async function getServerSideProps({req}) {
+  const { token } = req.cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+
+  const jwtToken = Buffer.from(token, "base64").toString('ascii');
+
+  const response = await axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`
+    }
+  })
+
+  return {
+    props: {
+      dataIntern: response.data.data
+    },
+  };
 }

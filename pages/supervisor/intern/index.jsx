@@ -5,33 +5,15 @@ import TableHead from '@/components/atoms/table-head'
 import TableData from '@/components/atoms/table-data'
 import Link from 'next/link'
 import axios from 'axios'
-import { getCookie } from 'cookies-next'
 import Badge from '@/components/atoms/badge'
 import { format } from 'date-fns'
 
 export default function SupervisorInternListPage({dataIntern}) {
   const [intern, setIntern] = useState([]);
   console.log(dataIntern);
-  
-
-  const ROOT_API = process.env.NEXT_PUBLIC_API;
-  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   useEffect(() => {
-    const token = getCookie('token');
-    const jwtToken = atob(token);
-
-    axios.get(`${ROOT_API}/${API_VERSION}/intern`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      }
-    }).then(res => {
-      console.log(res.data.data);
-      const data = res.data.data;
-      setIntern(data);
-    }).catch(err => {
-      console.log(err.response);
-    })
+    setIntern(dataIntern)
   }, [])
 
   return (
@@ -100,6 +82,15 @@ export default function SupervisorInternListPage({dataIntern}) {
 
 export async function getServerSideProps({req}) {
   const { token } = req.cookies;
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
