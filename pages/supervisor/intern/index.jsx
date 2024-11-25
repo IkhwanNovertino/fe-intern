@@ -74,7 +74,7 @@ export default function SupervisorInternListPage({dataIntern}) {
                           Detail
                         </Link>
                         <Link
-                          href={`/supervisor/logbook/all/${item._id}`}
+                          href={`/supervisor/logbook/${item._id}`}
                           className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
                         >
                           Logbook

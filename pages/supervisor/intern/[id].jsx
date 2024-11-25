@@ -11,7 +11,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import DetailIntern from '@/components/organisms/detail-intern-component'
 
-export default function InternDetailSupervisor({internDetail}) {
+export default function SupervisorInternDetailPage({internDetail}) {
   // console.log(internDetail);
   
   // const [intern, setIntern] = useState({
