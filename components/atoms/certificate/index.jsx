@@ -1,14 +1,16 @@
 import React from 'react'
 import CertificateTemplate from './certif-template'
 
-export default function CertificateComponent({ isDownload=false }) {
+export default function CertificateComponent({ isDownload, data }) {
+  console.log(data);
+  
   if (isDownload) {
     return (
       <button
-        className='px-2 py-2 text-center rounded-md hover:bg-slate-500 hover:brightness-50 transition duration-500'
+        className='group px-px py-px flex justify-center text-center rounded-md hover:bg-slate-500 hover:brightness-75 transition duration-500'
       >
-        <div className='absolute inset-0 font-medium text-lg text-white outline outline-slate-950 outline-1'>Klik untuk mengunduh sertifikat</div>
-        <CertificateTemplate />
+        <span className='absolute mt-4 font-medium text-lg text-white bg-wait rounded px-4 py-2  w-fit h-fit hidden group-hover:inline transition duration-500'>Klik untuk mengunduh sertifikat</span>
+        <CertificateTemplate data={data} />
       </button>
     )
   }
@@ -17,7 +19,7 @@ export default function CertificateComponent({ isDownload=false }) {
     <button
       className='cursor-default'
     >
-      <CertificateTemplate />
+      <CertificateTemplate data={data} />
     </button>
   )
 }

@@ -11,7 +11,7 @@ export default function DataLogbookIntern({data, id}) {
   
   return (
     <div>
-      <article className="submission-data w-full mb-5">
+      <article className="logbook-data w-full mb-5">
         <header className="text-base font-bold text-primary mb-4">
           Data Kegiatan Peserta
         </header>

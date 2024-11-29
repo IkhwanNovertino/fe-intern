@@ -4,9 +4,10 @@ import HeadProfileIntern from '../header-profile-intern'
 import DataSubmissionIntern from './data-submission-intern'
 import DataPlacementIntern from './data-placement-intern'
 import DataLogbookIntern from './data-logbook-intern'
-import CertificateComponent from '@/components/atoms/certificate'
+import DataCertificateIntern from './data-certificate-intern'
 
 export default function DetailIntern({ data }) {
+  
   const router = useRouter();
 
   const [profile, setProfile] = useState({
@@ -43,11 +44,63 @@ export default function DetailIntern({ data }) {
     description: '',
   }])
 
+  const [certificate, setCertificate] = useState({
+    historyIntern: {
+      name: '',
+      start_an_internship: 0,
+      end_an_internship: 0,
+      major: '',
+    },
+    historyEvaluation: {
+      category_score: [
+        {
+          name: 'NT',
+          score: [{
+            title: '',
+            category: '',
+            grade_number: 0,
+            grade_string: '',
+            _id: '',
+          }],
+        },
+        {
+          name: 'T',
+          score: [{
+            title: '',
+            category: '',
+            grade_number: 0,
+            grade_string: '',
+            _id: '',
+          }],
+        },
+      ],
+      
+      total: {
+        total_number: 0,
+        mean: 0,
+        total_string: '',
+      },
+    },
+    historyPembina: {
+      name: '',
+      nip: '',
+      position: '',
+      pangkat: '',
+    },
+    publish_date: 0,
+    result: '',
+    intern: '',
+    evaluation: '',
+    certif_num: '',
+    _id: '',
+  })
+
   useEffect(() => {
     setIntern(data);
     setProfile(data);
     setPlacement(data.placement);
     setLogbook(data.logbook);
+    setCertificate(data.certificate)
   }, [])
   return (
     <div className="mb-6">
@@ -57,17 +110,7 @@ export default function DetailIntern({ data }) {
         <DataSubmissionIntern data={intern} />
         <DataPlacementIntern data={placement} start_internship={intern.start_an_internship} end_internship={intern.end_an_internship} />
         <DataLogbookIntern data={logbook} id={intern._id} />
-        <article className="submission-data w-full mb-5">
-          <header className="text-base font-bold text-primary mb-4">
-            Data Penilaian Peserta
-          </header>
-          <section className="w-full">
-            {data.evaluate == null ? 
-              <div>Penilaian belum tersedia</div> :
-              <div>Penilaian sudah tersedia</div>
-            }
-          </section>
-        </article>
+        <DataCertificateIntern data={certificate}/>
       </div>
       <div className="py-4 px-2 mb-4">
         <button

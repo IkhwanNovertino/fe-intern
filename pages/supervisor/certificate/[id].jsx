@@ -1,10 +1,9 @@
 import React from 'react'
 import TemplateSupervisor from '../template'
 import axios from 'axios'
-import EvaluatePage from '@/components/organisms/evaluate'
 import HeadProfileIntern from '@/components/organisms/header-profile-intern'
-import ScoreForm from '@/components/organisms/evaluate/score-form'
-import TableScore from '@/components/organisms/evaluate/table-score'
+import ScoreForm from '@/components/organisms/certificate-score-form'
+import TableScore from '@/components/organisms/certificate-score-table'
 
 export default function SupervisorCertificateDetailPage({ intern, score, evaluate, token, id }) {
   
@@ -22,7 +21,8 @@ export default function SupervisorCertificateDetailPage({ intern, score, evaluat
             <div className="body flex flex-col items-start gap-2">
               <div className="h-1.5 w-full bg-secondary/20 mb-2 mt-2" />
               <ScoreForm data={score} id={id} token={token}/>
-              <TableScore data={evaluate} token={token} id={id} />
+              <div className="h-1.5 w-full bg-secondary/20 mb-2 mt-2" />
+              <TableScore data={evaluate} token={token} />
             </div>
           </div>
         </section>
