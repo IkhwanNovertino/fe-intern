@@ -108,7 +108,7 @@ export default function CertificateTemplate({ data }) {
                   </tr>
                   {data?.historyEvaluation?.category_score[1]?.score.map((items, index) => (
                     <>
-                      <tr>
+                      <tr key={index}>
                         <td className='border-r border-slate-600 text-xs px-2 text-center'>{index + 1}</td>
                         <td className='border-r border-slate-600 text-xs px-2 text-left'>{items.title}</td>
                         <td className='border-r border-slate-600 text-xs px-2 text-center'>{items.grade_number}</td>
@@ -142,7 +142,7 @@ export default function CertificateTemplate({ data }) {
                   </tr>
                   {data?.historyEvaluation?.category_score[0]?.score.map((items, index) => (
                   <>
-                    <tr>
+                    <tr key={index}>
                       <td className='border-r border-slate-600 text-xs px-2 text-center'>{index + 1}</td>
                       <td className='border-r border-slate-600 text-xs px-2 text-left'>{items.title}</td>
                       <td className='border-r border-slate-600 text-xs px-2 text-center'>{items.grade_number}</td>

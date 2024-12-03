@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import HeadProfileIntern from '../header-profile-intern'
 import DataSubmissionIntern from './data-submission-intern'
 import DataPlacementIntern from './data-placement-intern'
 import DataLogbookIntern from './data-logbook-intern'
 import DataCertificateIntern from './data-certificate-intern'
+import ApproveCertifButton from '@/components/atoms/button-acc-certif'
 
-export default function DetailIntern({ data }) {
+export default function DetailIntern({ data, token }) {
   
   const router = useRouter();
+  const pathname = usePathname();
 
   const [profile, setProfile] = useState({
     _id: '',
@@ -120,6 +122,9 @@ export default function DetailIntern({ data }) {
         >
           Kembali
         </button>
+        {pathname.includes('/pembina') && (
+          <ApproveCertifButton id={intern._id} token={token} />
+        )}
       </div>
     </div>
   )

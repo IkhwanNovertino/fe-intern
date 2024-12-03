@@ -76,9 +76,11 @@ export default function DashboardIntern({card, logbook, certificate}) {
             {certificate === null || certificate === undefined ? (
               <div>Data penilaian untuk sertifikat belum tersedia...</div>
             ) : (
-                <div>
+                <div
+                  className="cursor-pointer"
+                >
                   <Link
-                    className="cursor-pointer"
+                    
                     href={`/intern/certificate`}
                   >
                     <CertificateComponent data={certificate} />    
