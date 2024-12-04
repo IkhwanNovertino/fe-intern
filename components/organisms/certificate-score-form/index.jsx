@@ -6,7 +6,7 @@ import ModalScoreComponent from '@/components/molecules/modal-score-component';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ScoreForm({data, id, token}) {
+export default function ScoreForm({data, id, token, status}) {
   const [title, setTitle] = useState('');
   const [number, setNumber] = useState(0);
   const [scoreComponent, setScoreComponent] = useState([
@@ -83,8 +83,9 @@ export default function ScoreForm({data, id, token}) {
           </div>
           <div className="mb-2 mt-3 md:mb-3">
             <button
-              className='py-2 px-3 bg-primary/20 text-primary font-medium rounded hover:text-white hover:bg-primary/90 hover:transition hover:duration-300'
+              className='py-2 px-3 bg-primary/20 text-primary font-medium rounded hover:text-white hover:bg-primary/90 hover:transition hover:duration-300 disabled:bg-primary/20 disabled:text-dark/30 disabled:cursor-not-allowed'
               type="button"
+              disabled={status === 'success' ? true : false}
               onClick={handleInputScore}
             >
                 Simpan Nilai

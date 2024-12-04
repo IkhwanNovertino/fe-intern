@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 export default function VacancyDescription({data}) {  
   const [vacant, setVacant] = useState({
-    id: '',
+    _id: '',
     position: '',
     job_desc: '',
     requirement: [],
@@ -101,15 +101,10 @@ export default function VacancyDescription({data}) {
         <div>
           <header className="text-sm font-bold text-primary mb-1">Persyaratan Pengajuan</header>
           <section>
-            <p className="text-light text-base/loose">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Non beatae rem impedit iusto mollitia, veritatis tenetur
-              voluptatum odit autem, eaque id nisi facilis dignissimos
-              repudiandae dolore ea, quasi vero accusamus iure nemo!
-              Maiores iste dolores repudiandae error, delectus facere
-              voluptas voluptate temporibus, vitae enim quas ab
-              laudantium suscipit quasi nesciunt!
-            </p>
+            <ul className="ps-4 list-disc list-outside text-light">
+              <li className="mb-2">Persiapkan dokumen surat pengajuan magang</li>
+              <li className="mb-2">Isi formulir pengajuan di halaman ini</li>
+            </ul>
           </section>
         </div>
       </div>

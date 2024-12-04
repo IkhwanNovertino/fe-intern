@@ -4,14 +4,13 @@ import React from 'react'
 import { toast } from 'react-toastify';
 
 export default function ApproveCertifButton({ id, token }) {
-  console.log(token);
   
   const router = useRouter();
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const handleApproveCertificate = async () => {
-    const response = await axios.put(`${ROOT_API}/${API_VERSION}/certificate/${id}`,
+    const response = axios.put(`${ROOT_API}/${API_VERSION}/certificate/${id}`,
       { id: id },
       {
         headers: {
@@ -19,8 +18,10 @@ export default function ApproveCertifButton({ id, token }) {
         }
       }
     ).then(response => {
+      setTimeout(() => {
+        router.refresh();
+      }, 3000);
       toast.success('Pengesahan sertifikat berhasil')
-      router.refresh();
     }).catch(error => {
       toast.error('Pengesahan sertifikat gagal. Terdapat kesalahan')
     })

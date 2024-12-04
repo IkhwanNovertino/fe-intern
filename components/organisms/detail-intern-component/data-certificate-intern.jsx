@@ -1,8 +1,7 @@
 import CertificateComponent from '@/components/atoms/certificate'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export default function DataCertificateIntern({ data }) {
-  console.log(data);
 
   return (
     <article className="submission-data w-full mb-5">
@@ -13,7 +12,7 @@ export default function DataCertificateIntern({ data }) {
         {data === null ? 
           <div>Penilaian belum tersedia</div> :
           <div>
-            <CertificateComponent isDownload={false} data={data} />
+            <CertificateComponent isDownload={data.status === 'success' ? true : false} data={data} />
           </div>
         }
       </section>

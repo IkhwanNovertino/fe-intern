@@ -29,7 +29,8 @@ export default function SupervisorInternListPage({dataIntern}) {
                 <tr>
                   <TableHead title={'Nama Peserta Magang'}/>
                   <TableHead title={'NIS/NIM'}/>
-                  <TableHead title={'Waktu Magang'}/>
+                  <TableHead title={'Mulai Magang'}/>
+                  <TableHead title={'Selesai Magang'}/>
                   <TableHead title={'Status'}/>
                   <TableHead title={'Aksi'}/>
                 </tr>
@@ -39,14 +40,12 @@ export default function SupervisorInternListPage({dataIntern}) {
                   <tr key={index}>
                     <TableData title={item.name} classname={'uppercase font-semibold'}/>
                     <TableData title={item.id_num}/>
-                    <TableData title={`${format(item.start_an_internship, 'dd/MM/yyyy')} - ${format(item.end_an_internship, 'dd/MM/yyyy')}`}/>
-                    <TableData>
-                      <Badge
-                        size={'small'}
-                        title={item.statusIntern}
-                        status={(item.statusIntern === 'pending' && 'pending') || (item.statusIntern === 'active' && 'confirmed') || (item.statusIntern === 'finish' && 'success')}
-                      />
-                    </TableData>
+                    <TableData title={`${format(item.start_an_internship, 'dd MMM yyyy')}`}/>
+                    <TableData title={`${format(item.end_an_internship, 'dd MMM yyyy')}`}/>
+                    <TableData
+                      title={item.statusIntern}
+                      classname={`font-semibold ${item.statusIntern === 'pending' && 'text-warn' || item.statusIntern === 'active' && 'text-wait' || item.statusIntern === 'finish' && 'text-primary'}`}
+                    />
                     <TableData>
                       <div className="flex flex-wrap gap-2">
                         <Link
