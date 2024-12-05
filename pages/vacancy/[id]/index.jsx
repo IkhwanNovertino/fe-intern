@@ -28,7 +28,7 @@ export default function VacancyDetailPage({id, dataVacant}) {
 export async function getStaticPaths() {
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
-  const response = await axios.get(`${ROOT_API}/api/v1/vacancy`);
+  const response = await axios.get(`${ROOT_API}/${API_VERSION}/vacancy`);
   const data = await response.data.data;
 
   const paths = data.map((item) => ({

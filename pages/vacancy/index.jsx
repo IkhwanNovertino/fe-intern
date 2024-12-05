@@ -15,41 +15,9 @@ export default function VacancyPage() {
     axios.get(`${ROOT_API}/${API_VERSION}/vacancy`)
       .then(res => {
         const data = res.data.data;
-        // console.log(data);
         setVacancy(data);
       })
-  }, [])
-
-  // const dataVacancies = [
-  //   {
-  //     'id': 'vacant1',
-  //     'position': 'desain grafis',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   {
-  //     'id': 'vacant2',
-  //     'position': 'programmer',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   { 
-  //     'id': 'vacant3',
-  //     'position': 'statistik',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  //   { 
-  //     'id': 'vacant4',
-  //     'position': 'videografer',
-  //     'create_date': new Date(1709424000),
-  //     'duration': '2 bulan',
-  //     'start_internship': new Date(1717372800)
-  //   },
-  // ]
+  }, [vacancy])
 
   return (
     <LadingPageLayout>

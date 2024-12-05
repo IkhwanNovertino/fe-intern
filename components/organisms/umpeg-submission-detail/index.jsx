@@ -8,9 +8,8 @@ import { format } from 'date-fns';
 import DetailData from '@/components/molecules/detail-data';
 import ButtonDownload from '@/components/atoms/button-download';
 import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
 
-export default function UmpegSubmissionDetail({data}) {
+export default function UmpegSubmissionDetail({data, token}) {
   const router = useRouter();
   const [submission, setSubmission] = useState({
     _id: '',
@@ -45,14 +44,11 @@ export default function UmpegSubmissionDetail({data}) {
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
-  const token = getCookie('token');
-  // console.log(token);
-  
-  const jwtToken = atob(token);
 
-  const handleRejectSubmission = (id) => { 
+  const handleRejectSubmission = (event, id) => { 
+    event.preventDefault();
     axios.put(`${ROOT_API}/${API_VERSION}/submission/status/${id}?status=failed`, {}, {
-      headers: {Authorization: `Bearer ${jwtToken}`}
+      headers: {Authorization: `Bearer ${token}`}
     }).then(res => {
       console.log(res.data.data.submission);
       toast.success('Pengajuan pemohon telah ditolak')
@@ -61,9 +57,11 @@ export default function UmpegSubmissionDetail({data}) {
       console.log(err.response);
     })
   };
-  const handlerAcceptSubmission = (id) => {
+
+  const handlerAcceptSubmission = (event, id) => {
+    event.preventDefault();
     axios.put(`${ROOT_API}/${API_VERSION}/submission/status/${id}?status=confirmed`, {}, {
-      headers: {Authorization: `Bearer ${jwtToken}`}
+      headers: {Authorization: `Bearer ${token}`}
     }).then(res => {
       console.log(res.data.data.submission);
       toast.success('Pengajuan pemohon diproses')
@@ -82,7 +80,7 @@ export default function UmpegSubmissionDetail({data}) {
 
     axios.put(`${ROOT_API}/${API_VERSION}/submission/${id}`, data, {
       headers: {
-        Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${token}`
       }
     }).then(res => {
       console.log(res.data.data.submission);
@@ -93,7 +91,7 @@ export default function UmpegSubmissionDetail({data}) {
 
   useEffect(() => {
     setSubmission(data)
-  },[submission._id])
+  },[submission])
   return (
     <div className="mt-6 w-full lg:max-w-3xl">
       <div className="min-w-fit mb-6 rounded-xl">
@@ -228,7 +226,7 @@ export default function UmpegSubmissionDetail({data}) {
           <button
             type="button"
             className='py-2 px-6 mb-3 mr-3 bg-secondary/20 rounded font-medium text-secondary hover:bg-secondary/100 hover:text-white hover:transition hover:duration-300'
-            onClick={handleRejectSubmission(submission._id)}
+            onClick={e => handleRejectSubmission(e, submission._id)}
           >
             Tolak Pengajuan
           </button>
@@ -255,7 +253,7 @@ export default function UmpegSubmissionDetail({data}) {
                 <button
                   type="button"
                   className='py-2 px-6 mb-3 mr-3 bg-primary/20 rounded font-medium text-primary hover:bg-primary hover:text-white hover:transition hover:duration-300'
-                  onClick={handlerAcceptSubmission(submission._id)}
+                  onClick={e => handlerAcceptSubmission(e, submission._id)}
                 >
                   Proses Pengajuan
                 </button>

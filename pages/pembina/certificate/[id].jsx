@@ -8,7 +8,15 @@ export default function PembinaCertificateDetailPage({ data, token }) {
   
   return (
     <TempalateDashboardPembina>
-      <DetailIntern data={data} token={ token } />
+      <section className="content-wrapper bg-ternary pl-4 pr-4 py-4">
+        <header className="overview-title">
+          <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Detail Peserta Magang</h1>
+        </header>
+        <section className="header-section w-[640px] mt-12">
+          <DetailIntern data={data} token={ token } />
+        </section>
+      </section>
+      
     </TempalateDashboardPembina>
   )
 }

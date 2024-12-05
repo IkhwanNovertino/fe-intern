@@ -10,7 +10,7 @@ export default function CertificateTemplate({ data }) {
     <section id='certificate'>
       <section
         id='certificate-first-page'
-        className='w-max h-max px-28 py-4 flex flex-col rounded bg-cover'
+        className='w-full h-max px-28 py-4 flex flex-col rounded bg-cover'
       >
         <div className='certificate-header flex flex-col justify-center text-center mb-10'>
           <div className='flex justify-center mb-1'>
@@ -55,7 +55,7 @@ export default function CertificateTemplate({ data }) {
       </section>
       <section
         id='certificate-second-page'
-        className='w-max mt-6 px-28 py-4 min-h-96 flex flex-col rounded bg-cover'
+        className='w-full mt-6 px-28 py-4 min-h-96 flex flex-col rounded bg-cover'
       >
         <div className='certificate-second-header flex justify-center mb-4 mt-8'>
           <table className='text-left'>
