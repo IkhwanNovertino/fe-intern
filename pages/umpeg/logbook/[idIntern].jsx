@@ -2,17 +2,12 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import LogbookPerIntern from '@/components/organisms/logbook-intern';
 import TempalateDashboardUmpeg from '../template';
-import { jwtDecode } from 'jwt-decode';
 import UmpegLogbookDetail from '@/components/organisms/umpeg-logbook-intern';
 
-export default function UmpegInternLogbookPage({ intern, logbook, user }) {
-  console.log(intern);
-  console.log(logbook);
-  console.log(user);
-  
+export default function UmpegInternLogbookPage({ intern, logbook }) {
   return (
     <TempalateDashboardUmpeg>
-      <UmpegLogbookDetail intern={intern} logbook={logbook} url={user.role} />
+      <UmpegLogbookDetail intern={intern} logbook={logbook}/>
     </TempalateDashboardUmpeg>
   )
 }
@@ -34,7 +29,6 @@ export async function getServerSideProps({req, params}) {
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const jwtToken = Buffer.from(token, "base64").toString('ascii');
-  const payload = jwtDecode(jwtToken);
 
   const response = await axios.get(`${ROOT_API}/${API_VERSION}/logbook?intern=${idIntern}`, {
     headers: {
@@ -46,7 +40,6 @@ export async function getServerSideProps({req, params}) {
     props: {
       intern: response.data.data.interns,
       logbook: response.data.data.logbook,
-      user: payload.user,
     },
   };
 }

@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import TemplateSupervisor from '../template'
-import Table from '@/components/atoms/table'
-import TableHead from '@/components/atoms/table-head'
-import TableData from '@/components/atoms/table-data'
-import Link from 'next/link'
-import axios from 'axios'
-import Badge from '@/components/atoms/badge'
-import { format } from 'date-fns'
+import React from 'react'
+import TempalateDashboardPembina from '../template'
+import axios from 'axios';
+import { format } from 'date-fns';
+import Table from '@/components/atoms/table';
+import TableHead from '@/components/atoms/table-head';
+import TableData from '@/components/atoms/table-data';
+import Link from 'next/link';
 
-export default function SupervisorInternListPage({dataIntern}) {
-  const [intern, setIntern] = useState([]);
-  console.log(dataIntern);
-
-  useEffect(() => {
-    setIntern(dataIntern)
-  }, [])
-
+export default function PembinaCertificateListPage({ data }) {
+  console.log(data);
+  
   return (
-    <TemplateSupervisor>
+    <TempalateDashboardPembina>
       <section className="content-wrapper min-h-screen bg-ternary pl-4 pr-4 py-4">
         <header className="overview-title">
           <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Daftar Peserta Magang</h1>
@@ -29,39 +23,28 @@ export default function SupervisorInternListPage({dataIntern}) {
                 <tr>
                   <TableHead title={'Nama Peserta Magang'}/>
                   <TableHead title={'NIS/NIM'}/>
-                  <TableHead title={'Mulai Magang'}/>
-                  <TableHead title={'Selesai Magang'}/>
+                  <TableHead title={'Jurusan'}/>
+                  <TableHead title={'Asal Sekolah/Kampus'}/>
                   <TableHead title={'Status'}/>
-                  <TableHead title={'Aksi'}/>
+                  <TableHead title={''}/>
                 </tr>
               </thead>
               <tbody>
-                {dataIntern.map((item, index) => (
+                {data.map((item, index) => (
                   <tr key={index}>
                     <TableData title={item.name} classname={'uppercase font-semibold'}/>
                     <TableData title={item.id_num}/>
-                    <TableData title={`${format(item.start_an_internship, 'dd MMM yyyy')}`}/>
-                    <TableData title={`${format(item.end_an_internship, 'dd MMM yyyy')}`}/>
+                    <TableData title={item.major}/>
+                    <TableData title={item.institute}/>
                     <TableData
                       title={item.statusIntern}
                       classname={`font-semibold ${item.statusIntern === 'pending' && 'text-warn' || item.statusIntern === 'active' && 'text-wait' || item.statusIntern === 'finish' && 'text-primary'}`}
                     />
+                    <TableData title={item.biro}/>
                     <TableData>
                       <div className="flex flex-wrap gap-2">
                         <Link
-                          href={`/supervisor/intern/${item._id}`}
-                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                        >
-                          Detail
-                        </Link>
-                        <Link
-                          href={`/supervisor/logbook/${item._id}`}
-                          className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
-                        >
-                          Logbook
-                        </Link>
-                        <Link
-                          href={`/supervisor/certificate/${item._id}`}
+                          href={`/pembina/certificate/${item._id}`}
                           className="text-sm font-medium text-dark text-center px-2.5 py-1 bg-slate-200 rounded-md"
                         >
                           Sertifikat
@@ -75,21 +58,12 @@ export default function SupervisorInternListPage({dataIntern}) {
           </div>
         </section>
       </section>
-    </TemplateSupervisor>
+    </TempalateDashboardPembina>
   )
 }
 
 export async function getServerSideProps({req}) {
   const { token } = req.cookies;
-
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/sign-in',
-        permanent: false,
-      },
-    };
-  }
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
@@ -104,7 +78,7 @@ export async function getServerSideProps({req}) {
 
   return {
     props: {
-      dataIntern: response.data.data
+      data: response.data.data
     },
   };
 }

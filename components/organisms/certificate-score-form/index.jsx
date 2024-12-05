@@ -1,31 +1,29 @@
+'use client'
 import React, { useEffect, useState } from 'react'
-import ScoreComponent from '@/components/molecules/score-component'
-import { getCookie } from 'cookies-next';
 import axios from 'axios';
-import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import ModalScoreComponent from '@/components/molecules/modal-score-component';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-export default function ScoreForm() {
+export default function ScoreForm({data, id, token, status}) {
   const [title, setTitle] = useState('');
   const [number, setNumber] = useState(0);
   const [scoreComponent, setScoreComponent] = useState([
     {
       _id: '',
-      title: ''
+      title: '',
+      category: '',
     }
   ]);
 
-  const { id } = useParams();
-  // console.log(id);
-  
-
-  const token = getCookie('token');
-  const jwtToken = atob(token);
+  const router = useRouter();
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const handleInputScore = () => {
+    if (!title || !number) return toast.error('komponen nilai dan nilai harus diisi');
     const dataForm = {
       title: title,
       number: number,
@@ -39,27 +37,20 @@ export default function ScoreForm() {
     axios.post(`${ROOT_API}/${API_VERSION}/evaluation`, 
       dataSend, {
       headers: {
-        Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${token}`
       }
     }).then(res => {
-      // console.log(res);
+      setTitle('');
+      setNumber('');
+      toast.success('Nilai berhasil ditambahkan')
+      router.refresh();
     }).catch(err=> {
       console.log(err);
-      
     })
   };
 
   useEffect(() => {
-    axios.get(`${ROOT_API}/${API_VERSION}/score-component`, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`
-      }
-    }).then(res => {
-      // console.log(res.data.data);
-      setScoreComponent(res.data.data);
-    }).catch(err => {
-      console.log(err);
-    })
+    setScoreComponent(data)
   }, []);
   return (
     <article className="w-full mb-5">
@@ -92,13 +83,14 @@ export default function ScoreForm() {
           </div>
           <div className="mb-2 mt-3 md:mb-3">
             <button
-              className='py-2 px-3 bg-primary/20 text-primary font-medium rounded hover:text-white hover:bg-primary/90 hover:transition hover:duration-300'
+              className='py-2 px-3 bg-primary/20 text-primary font-medium rounded hover:text-white hover:bg-primary/90 hover:transition hover:duration-300 disabled:bg-primary/20 disabled:text-dark/30 disabled:cursor-not-allowed'
               type="button"
+              disabled={status === 'success' ? true : false}
               onClick={handleInputScore}
             >
                 Simpan Nilai
             </button>
-            <ModalScoreComponent />
+            <ModalScoreComponent token={token} />
           </div>
         </form>
       </section>

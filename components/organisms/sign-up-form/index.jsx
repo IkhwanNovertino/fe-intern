@@ -28,6 +28,7 @@ export default function SignUpForm() {
       });
     })
   }
+  // Username dan password menggunakan nama lowercase dan sambung tanpa spasi.
 
   return (
     <form>

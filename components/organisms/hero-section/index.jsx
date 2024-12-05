@@ -20,7 +20,7 @@ export default function HeroSection() {
                 className="px-6 py-4 mb-2 md:me-2 bg-primary rounded-xl text-base font-semibold text-white tracking-wide hover:bg-primary/70"
               >
                 <Link
-                  href="/vacancy/1"
+                  href="/vacancy/mandiri"
                 >
                   Daftar Magang
                 </Link>

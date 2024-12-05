@@ -1,20 +1,23 @@
 import React from 'react'
-import TemplateSupervisor from '../template'
-import axios from 'axios'
-import DetailIntern from '@/components/organisms/detail-intern-component'
+import TempalateDashboardPembina from '../template'
+import axios from 'axios';
+import DetailIntern from '@/components/organisms/detail-intern-component';
 
-export default function SupervisorInternDetailPage({internDetail}) {
+export default function PembinaCertificateDetailPage({ data, token }) {
+  console.log(data);
+  
   return (
-    <TemplateSupervisor>
+    <TempalateDashboardPembina>
       <section className="content-wrapper bg-ternary pl-4 pr-4 py-4">
         <header className="overview-title">
           <h1 className="text-dark text-4xl font-bold text-left mt-12 mb-5">Detail Peserta Magang</h1>
         </header>
         <section className="header-section w-[640px] mt-12">
-          <DetailIntern data={internDetail}/>
+          <DetailIntern data={data} token={ token } />
         </section>
       </section>
-    </TemplateSupervisor>
+      
+    </TempalateDashboardPembina>
   )
 }
 
@@ -44,7 +47,8 @@ export async function getServerSideProps({req, params}) {
 
   return {
     props: {
-      internDetail: response.data.data,
+      data: response.data.data,
+      token: jwtToken,
     },
   };
 }

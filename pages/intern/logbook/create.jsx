@@ -94,6 +94,7 @@ export default function CreateLogbook() {
                 <button
                   type="button"
                   className='py-2 px-4 mr-3 bg-light/20 text-dark font-medium rounded'
+                  onClick={() => router.back()}
                 >
                   Kembali
                 </button>

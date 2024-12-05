@@ -26,7 +26,9 @@ export default function VacancyDetailPage({id, dataVacant}) {
 }
 
 export async function getStaticPaths() {
-  const response = await axios.get(`https://be-magang-production.up.railway.app/api/v1/vacancy`);
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+  const response = await axios.get(`${ROOT_API}/${API_VERSION}/vacancy`);
   const data = await response.data.data;
 
   const paths = data.map((item) => ({
@@ -38,7 +40,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  const response = await axios.get(`https://be-magang-production.up.railway.app/api/v1/vacancy/${id}`)
+  const ROOT_API = process.env.NEXT_PUBLIC_API;
+  const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
+  const response = await axios.get(`${ROOT_API}/api/v1/vacancy/${id}`)
   const data = await response.data.data
 
   return {

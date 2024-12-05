@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function SubmissionSection({id}) {
   const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -260,7 +261,7 @@ export default function SubmissionSection({id}) {
                         onChange={(event) => handlerCandidateChange(event, index)}
                         className="w-full focus:outline-none text-base font-normal bg-primary/0 px-5 py-2 md:py-3 mt-2 rounded-xl border border-gray-300 focus-within:border-primary"
                       >
-                        {/* <option>Pilih jenjang kandidat</option>  */}
+                        <option>---Pilih jenjang kandidat</option> 
                         <option value="slta">SMA/SMK</option> 
                         <option value="college">Perguruan Tinggi</option> 
                         <option value="employee">Pegawai</option> 
@@ -275,21 +276,6 @@ export default function SubmissionSection({id}) {
             ) : (
               <button onClick={addCandidate} className="float-end mt-8">+ Tambah Data Kandidat</button>
             )}
-            {/* {
-              candidates.map((el, i) => {
-                return (
-                  <CandidateFieldset no={el} key={i}/>
-                )
-              })
-            } */}
-            {/* {
-              candidates.length === 7 ? (
-                <button onClick={addCandidate} hidden>+ Tambah Data Kandidat</button>
-              ): (
-                <button onClick={addCandidate} className="float-end">+ Tambah Data Kandidat</button>
-              )
-            } */}
-            {/* <button onClick={addCandidate}>+ Tambah Data Kandidat</button> */}
           </div>
           <div>
             {
@@ -301,7 +287,7 @@ export default function SubmissionSection({id}) {
                 </button>
               ) : (
                 <button className="mt-4 mb-16 py-3 w-full bg-primary text-white text-base font-medium rounded-lg">
-                  <a href="/sign-in">Log in</a>
+                  <Link href="/sign-in">Log in</Link>
                 </button>
               )
             }
@@ -311,3 +297,4 @@ export default function SubmissionSection({id}) {
     </section>
   );
 }
+

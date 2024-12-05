@@ -5,6 +5,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 
 export default function TopVacancies() {
+  
   const [dataVacant, setDataVacant] = useState([]);
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -15,7 +16,6 @@ export default function TopVacancies() {
       .then(res => {
         const data = res.data.data;
         setDataVacant(data);
-        console.log(dataVacant);
       })
   },[])
 

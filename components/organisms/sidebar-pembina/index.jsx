@@ -1,45 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../sidebar'
 import ProfileHead from '../sidebar/profile-head'
 import Menus from '../sidebar/menus'
 import MenuItem from '../sidebar/menu-item'
 import { usePathname, useRouter } from 'next/navigation'
-import { deleteCookie } from 'cookies-next'
+import { deleteCookie, getCookie } from 'cookies-next'
+import { jwtDecode } from 'jwt-decode'
 
-export default function SidebarSupervisor() {
+export default function SidebarPembina() {
   const pathname = usePathname();
   const router = useRouter();
   const logout = () => {
     deleteCookie('token')
     router.push('/sign-in')
   }
+
   return (
     <Sidebar>
-      <ProfileHead/>
+      <ProfileHead />
       <Menus>
         <MenuItem
-          href={"/supervisor"}
+          href={"/pembina"}
           title={'Dashboard'}
           icon={'ic-dashboard'}
-          active={pathname === '/supervisor' ? true : false}
+          active={pathname === '/pembina' ? true : false}
         />
         <MenuItem
-          href={"/supervisor/intern"}
-          title={'Peserta Magang'}
-          icon={'ic-intern'}
-          active={pathname.includes('/intern') ? true : false}
-        />
-        <MenuItem
-          href={"/supervisor/logbook"}
-          title={'logbook'}
-          icon={'ic-logbook'}
-          active={pathname.includes('/logbook') ? true : false}
-        />
-        <MenuItem
-          href={"/supervisor/certificate"}
+          href={"/pembina/certificate"}
           title={'Sertifikat'}
           icon={'ic-certificate'}
           active={pathname.includes('/certificate') ? true : false}
+        />
+        <MenuItem
+          href={"/pembina/recap"}
+          title={'Rekap Magang'}
+          icon={'ic-recap'}
+          active={pathname.includes('/recap') ? true : false}
         />
         <MenuItem
           logout={logout}

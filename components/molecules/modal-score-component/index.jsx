@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
@@ -5,28 +6,23 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ModalScoreComponent() {
+export default function ModalScoreComponent({token}) {
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-
   const router = useRouter();
-
-  const token = getCookie('token');
-  const jwtToken = atob(token);
 
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   const handlerAddScoreComponent = () => {
-
     if (!title || !category) {
       toast.error('komponen nilai dan kategori harus diisi');
       setShowModal(false)
     } else {
       axios.post(`${ROOT_API}/${API_VERSION}/score-component`, { title, category }, {
         headers: {
-          Authorization: `Bearer ${jwtToken}`,
+          Authorization: `Bearer ${token}`,
         }
       }).then(res => {
         console.log(res);
@@ -34,14 +30,11 @@ export default function ModalScoreComponent() {
         setCategory('');
         setShowModal(false);
         toast.success('Komponen nilai berhasil ditambahkan')
-        router.refresh(router.asPath);
+        router.refresh();
       }).catch(err => {
         console.log(err);
-        
       })
     }
-    
-    
   }
   
   return (
@@ -123,19 +116,6 @@ export default function ModalScoreComponent() {
           </div>
         </div>
       ) : null}
-
-      {/* {showModal && (
-        <div
-          className='modal '
-        >
-          <div className='modal-header'>
-            Tambahkan Komponen Nilai
-          </div>
-          <div className='modal-body'>
-            FORM TAMBAH KOMPONEN NILAI
-          </div>
-        </div>
-      )} */}
     </>
   )
 }
