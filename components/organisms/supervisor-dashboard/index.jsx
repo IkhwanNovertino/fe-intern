@@ -53,7 +53,7 @@ export default function SupervisorDashboard({dataBiro, dataCard, dataIntern}) {
           {dataBiro.map((item, index) => (
             <div key={index} className="mt-5 mb-3">
             <header>
-                <h4 className="text-indigo-950 text-base font-semibold  text-left ml-1 my-0">BIDANG {item.name}</h4>
+                <h4 className="text-indigo-950 text-base font-semibold  text-left ml-1 my-0">BIDANG {item.name ?? ''}</h4>
             </header>
             <section>
               <DataBarBiro dataBiro={item} />
@@ -84,7 +84,7 @@ export default function SupervisorDashboard({dataBiro, dataCard, dataIntern}) {
             <tbody>
               {dataIntern.map((item, index) => (
                 <tr key={index}>
-                  <TableData title={item.name} classname={'uppercase font-semibold'}/>
+                  <TableData title={item.name ?? ''} classname={'uppercase font-semibold'}/>
                   <TableData title={item.institute} />
                   <TableData title={format(item.start_an_internship, 'dd/MM/yyyy')} />
                   <TableData title={format(item.end_an_internship, 'dd/MM/yyyy')} />

@@ -273,3 +273,4 @@ export default function UmpegSubmissionDetail({data, token}) {
     </div>
   )
 }
+

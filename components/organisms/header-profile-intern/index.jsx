@@ -7,7 +7,7 @@ export default function HeadProfileIntern({ data }) {
     <div className="profile-interns flex items-center justify-start gap-4 mb-5">
       <div className="img-id">
         <Image
-          src={'/img/profile-pic.png'}
+          src={'/img/user-avatar.png'}
           width={180}
           height={180}
           className="w-40 rounded-full"
@@ -15,9 +15,9 @@ export default function HeadProfileIntern({ data }) {
       </div>
       <div className="basic-id w-full flex items-start justify-between">
         <div>
-          <p className="text-dark text-base font-bold name_interns">{ data.name }</p>
-          <p className="text-light text-sm font-medium num_id_interns">{ data.id_num }</p>
-          <p className="text-light text-sm font-medium mb-3">{ data.email }</p>
+          <p className="text-dark text-base font-bold name_interns">{data.name}</p>
+          <p className="text-light text-sm font-medium num_id_interns">{data.id_num}</p>
+          <p className="text-light text-sm font-medium mb-3">{data.email}</p>
           <Badge
             title={data.statusIntern}
             status={(data.statusIntern === 'pending' && 'pending') ||
