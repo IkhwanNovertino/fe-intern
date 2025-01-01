@@ -2,6 +2,8 @@ import "@/styles/globals.css";
 import { Poppins } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import 'react-date-range/dist/styles.css'; // Main style file
+import 'react-date-range/dist/theme/default.css'; // Theme css file
 
 const poppins = Poppins({
   subsets: ['latin'],
