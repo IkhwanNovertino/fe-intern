@@ -76,7 +76,7 @@ export default function Auth() {
                   
                 </li>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
-                  <Link href="/">Profil Saya</Link>
+                  <Link href={`/${user.role}/profile`}>Profil Saya</Link>
                 </li>
                 <li className="text-base font-medium text-dark mb-2 hover:font-semibold">
                   <button type="button" onClick={onLogOut}>Log out</button>

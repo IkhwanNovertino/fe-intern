@@ -42,6 +42,12 @@ export default function SidebarSupervisor() {
           active={pathname.includes('/certificate') ? true : false}
         />
         <MenuItem
+          href={"/supervisor/profile"}
+          title={'Profil'}
+          icon={'ic-certificate'}
+          active={pathname.includes('/profile') ? true : false}
+        />
+        <MenuItem
           logout={logout}
           title={'Logout'}
           icon={'ic-logout'}

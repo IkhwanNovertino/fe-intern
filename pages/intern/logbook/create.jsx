@@ -48,7 +48,7 @@ export default function CreateLogbook() {
             <form onSubmit={(event) => handleCreateLogbook(event)} autoComplete="false">
               <div className="mb-2 md:mb-3">
                 <label htmlFor="date" className="block text-sm md:text-base font-medium">
-                  Tanggal Selesai Magang
+                  Tanggal Kegiatan
                   <input
                     type="date"
                     name="date"
