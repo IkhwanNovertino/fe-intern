@@ -51,8 +51,10 @@ export default function UmpegSubmissionDetail({data, token}) {
       headers: {Authorization: `Bearer ${token}`}
     }).then(res => {
       console.log(res.data.data.submission);
+      setTimeout(() => {
+        router.refresh();
+      }, 5000);
       toast.success('Pengajuan pemohon telah ditolak')
-      router.refresh()
     }).catch(err => {
       console.log(err.response);
     })
@@ -64,8 +66,10 @@ export default function UmpegSubmissionDetail({data, token}) {
       headers: {Authorization: `Bearer ${token}`}
     }).then(res => {
       console.log(res.data.data.submission);
+      setTimeout(() => {
+        router.refresh();
+      }, 5000);
       toast.success('Pengajuan pemohon diproses')
-      router.refresh()
     }).catch(err => {
       console.log(err.response);
     })
@@ -84,8 +88,11 @@ export default function UmpegSubmissionDetail({data, token}) {
       }
     }).then(res => {
       console.log(res.data.data.submission);
+      setTimeout(() => {
+        router.push('/umpeg/submission');
+      }, 5000);
       toast.success('Surat balasan telah dikirim. Pengajuan diterima.')
-      router.push('/umpeg/submission');
+      
     })
   };
 
