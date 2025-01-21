@@ -58,6 +58,12 @@ export default function SidebarIntern() {
           active={pathname.includes('/certificate') ? true : false}
         />
         <MenuItem
+          href={"/intern/profile"}
+          title={'Profil'}
+          icon={'ic-profile'}
+          active={pathname.includes('/profile') ? true : false}
+        />
+        <MenuItem
           logout={logout}
           title={'Logout'}
           icon={'ic-logout'}

@@ -8,30 +8,12 @@ import { deleteCookie, getCookie } from 'cookies-next'
 import { jwtDecode } from 'jwt-decode';
 
 export default function SidebarUmpeg() {
-  // const [users, setUsers] = useState({
-  //   name: '',
-  //   role: '',
-  //   avatar: '',
-  // });
   const pathname = usePathname()
   const router = useRouter();
   const logout = () => {
     deleteCookie('token')
     router.push('/sign-in')
   }
-
-  // useEffect(() => {
-  //   const token = getCookie('token');
-
-  //   const jwtToken = atob(token);
-  //   const payload = jwtDecode(jwtToken);
-  //   const dataUserFromPayload = payload.user;
-    
-  //   dataUserFromPayload.avatar = `https://be-magang-production.up.railway.app/public/uploads/${dataUserFromPayload.avatar}`
-  //   // console.log(dataUserFromPayload);
-  //   setUsers(dataUserFromPayload)
-    
-  // }, [])
   return (
     <Sidebar>
       <ProfileHead />
@@ -59,6 +41,12 @@ export default function SidebarUmpeg() {
           title={'Rekap Magang'}
           icon={'ic-recap'}
           active={pathname.includes('/recap') ? true : false}
+        />
+        <MenuItem
+          href={"/umpeg/profile"}
+          title={'Profil'}
+          icon={'ic-profile'}
+          active={pathname.includes('/profile') ? true : false}
         />
         <MenuItem
           logout={logout}

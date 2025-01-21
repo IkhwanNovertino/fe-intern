@@ -33,6 +33,8 @@ export default function ChangePasswordPage({token}) {
       deleteCookie('token');
       router.push('/sign-in')
     }).catch((err) => {
+      console.log(err);
+      
       toast.error('gagal mengubah kata sandi')
     });
   }
