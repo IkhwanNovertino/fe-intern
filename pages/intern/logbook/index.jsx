@@ -6,6 +6,10 @@ import axios from 'axios';
 import ItemLogbook from '@/components/molecules/item-logbook';
 import { format } from 'date-fns';
 
+import dynamic from 'next/dynamic'
+import { jwtDecode } from 'jwt-decode';
+const ModalReportLogbook = dynamic(() => import('@/components/molecules/modal-report-logbook'), { ssr: false })
+
 export default function LogbookIntern() {
   const [logbook, setlogbook] = useState([{
     _id: '',
@@ -13,13 +17,16 @@ export default function LogbookIntern() {
     date: 0,
     activity: '',
   }]);
+  const [uuid, setUUID] = useState('');
   const ROOT_API = process.env.NEXT_PUBLIC_API;
   const API_VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
   useEffect(() => {
     const token = getCookie('token');
     const jwtToken = atob(token);
-
+    const payload = jwtDecode(jwtToken);
+    setUUID(payload.user.id);
+    
     axios.get(`${ROOT_API}/${API_VERSION}/logbook`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`
@@ -30,7 +37,6 @@ export default function LogbookIntern() {
       setlogbook(data);
     }).catch(err => {
       console.log(err.response);
-      
     })
   }, [setlogbook])
   return (
@@ -43,7 +49,7 @@ export default function LogbookIntern() {
           <div className="mt-6 w-full lg:max-w-3xl">
             <button
               type="button"
-              className='py-2 px-4 bg-wait/20 text-dark font-medium rounded hover:text-white hover:bg-wait/90 hover:transition hover:duration-300'
+              className='py-2 px-4 mr-1 bg-wait/20 text-dark font-medium rounded hover:text-white hover:bg-wait/90 hover:transition hover:duration-300'
             >
               <Link
                 href={'/intern/logbook/create'}
@@ -51,6 +57,7 @@ export default function LogbookIntern() {
                 + Tambah Logbook
               </Link>
             </button>
+            <ModalReportLogbook token={uuid} />
           </div>
           <div className="mt-6 w-full lg:max-w-3xl">
             {logbook.length > 0  ? (
